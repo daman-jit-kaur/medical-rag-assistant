@@ -53,13 +53,13 @@ medical-rag-assistant/
 ## Milestone Checklist
 
 ### ✅ Week 1 — Foundation
-- [ ] Project folder created (`medical-rag-assistant`)
-- [ ] Virtual environment set up and activated
-- [ ] All libraries installed (pypdf2, sentence-transformers, chromadb, streamlit, openai, langchain, ragas)
-- [ ] OpenAI account created + API key saved in `.env`
-- [ ] 20–30 PubMed PDFs downloaded into `/data`
-- [ ] GitHub repo initialized
-- [ ] `extract.py` written and tested — extracts text from all PDFs
+- [x] Project folder created (`medical-rag-assistant`)
+- [x] Virtual environment set up and activated
+- [x] All libraries installed (pypdf2, sentence-transformers, chromadb, streamlit, openai, langchain, ragas)
+- [x] OpenAI account created + API key saved in `.env`
+- [x] 6 PubMed PDFs downloaded into `/data`
+- [x] GitHub repo initialized
+- [x] `extract.py` written and tested — extracts text from all PDFs
 
 ### ⬜ Week 2 — Embeddings & Vector Store
 - [ ] Text chunked into 500-word segments
@@ -89,7 +89,9 @@ medical-rag-assistant/
 | Date | What Was Done | Next Step |
 |---|---|---|
 | — | Project planning complete, roadmap reviewed | Begin Week 1 setup |
-
+| Mar 9, 2026 | Project planning complete, roadmap reviewed | Begin Week 1 setup |
+| Mar 9, 2026 | Day 1 complete — Python, VS Code, Git, GitHub, venv, libraries, OpenAI API key all set up | Day 2 — download papers |
+| Mar 9, 2026 | Day 2 complete — 6 PubMed papers downloaded, extract.py written and working, all texts extracted | Day 3 — chunking and embeddings |
 ---
 
 ## How to Use This File
