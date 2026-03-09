@@ -1,0 +1,500 @@
+
+--- Page 1 ---
+Vol.:(0123456789)Child's Nervous System           (2026) 42:80  
+https://doi.org/10.1007/s00381-026-07171-6
+RESEARCH
+Integration of AI‑generated clinic letters in complex paediatric 
+neurosurgery outpatient settings
+Mohamed Elmolla1 · Anjum Aarifa Khanom2 · Ahmad M. S. Ali1,4 · Christian Duncan3 · Anusha Hennedige3 · 
+Vejay N. Vakharia3
+Received: 16 June 2025 / Accepted: 7 February 2026 
+© The Author(s) 2026
+Abstract
+Purpose Dictation of outpatient clinic letters can result in increased workload for clinicians. The use of generative, natural 
+language processing artificial intelligence (AI) software could be used to supplant dictation and typing, alleviating the cli-
+nician’s workload. Therefore, our objective was to validate the use of AI software, Lyrebird AI (Lyrebird Health, Ltd.) to 
+create accurate and readable clinic letters, in the context of a single clinician general paediatric neurosurgery clinic and a 
+multi-disciplinary craniofacial clinic.
+Methods Twenty consultations were included, wherein a microphone was used to record the entire consultation. For each 
+consultation, two letters were generated independently: (1) Lyrebird AI letter automatically generated at the end of the record-
+ing and (2) human clinician manual dictation in the usual manner. The letters were compared using objective readability 
+metrics and a subjective rating by an independent blinded clinician for clinical accuracy.
+Results AI-generated clinic letters significantly improved readability compared to clinician-dictated letters, when using 
+the Flesch–Kincaid Grade Level (median 10.3, IQR 0.75), (median 10.9, IQR 1.15) (z  = 2.73, p < 0.05), and SMOG Index 
+(median 11.7, IQR 1.25) (median 13.1, IQR 0.9) (z  =  − 3.36, p < 0.001) metrics. An independent blinded clinician subjec-
+tively chose the AI-generated letters for overall preference in 75% of cases.
+Conclusions Lyrebird AI–generated clinic letters increased readability whilst maintaining clinical accuracy. Future work 
+should focus on time, effort, and cost saving analysis. Presently, the findings of this study provide validation of Lyrebird AI 
+for complex, multi-stakeholder clinical settings.
+Keywords Generative artificial intelligence · Clinic letters · Natural language processing · Health communication
+Introduction
+Accurate and comprehensible communication between clini-
+cians and patients is essential. In the outpatient setting, clinic 
+letters are used to summarise discussions and are an impor -
+tant record of the patient’s clinical history, diagnosis, and 
+treatment plan. Presently, dictation, which requires human transcription and checking, is used to create clinic letters. 
+This has been shown to be an inefficient use of a clinician’s 
+time, resulting in increasing stress and job dissatisfaction 
+[1–4]. Additionally, it can also add delay to the letter reach-
+ing both the patient and other clinicians involved with the 
+management.
+Whilst conventional voice recognition software can be 
+used to mitigate typing, it requires dictation and remains 
+inaccurate due to its inability to process, learn from, and 
+understand input. In comparison, novel generative artificial 
+intelligence (AI) or natural language processing (NLP) tools 
+can be used to automate the generation of clinic letters with-
+out the need for any formal dictation simply by passively 
+‘listening’ to the consultation. This reduces overall consul-
+tation times and cognitive burden for the clinician, but it is 
+essential that the text output is clinically accurate without 
+compromising readability and language nuance [5 , 6]. * Anjum Aarifa Khanom 
+ aarifakhanom@doctors.org.uk; aarifah_k@icloud.com
+1 The Walton Centre NHS Foundation Trust, Liverpool, UK
+2 Aintree University Hospital, Liverpool, UK
+3 Alder Hey Children’s NHS Foundation Trust, Liverpool, UK
+4 The Department of Cancer Medicine, Institute of Systems, 
+Molecular and Integrative Biology, University of Liverpool, 
+Liverpool, UK
+--- Page 2 ---
+ Child's Nervous System           (2026) 42:80 
+    80  Page 2 of 7
+With the rapid progression in artificial intelligence (AI) 
+and the development of large language models (LLMs), 
+commercial software is now available that can summarise 
+pertinent information from the consultation without the need 
+for the clinician to dictate a letter. By passively listening in 
+to the consultation, the software can distinguish the health-
+care professionals from the patient and family members, 
+extract clinically useful information from the consultation, 
+and summarise the information in a letter format that has 
+been predefined as a template. To determine if such models 
+are practical and accurate enough for use in a complex out-
+patient setting, we undertook a validation study including 
+both a single clinician general paediatric neurosurgery clinic 
+and a multi-disciplinary craniofacial clinic.
+Methods
+A prospective case–control study was conducted over three 
+consecutive clinics, using Lyrebird AI (Lyrebird Health, 
+Ltd.), as it is the NLP tool being trialled at our institution.
+In this study, the outpatient clinic runs in the typical man-
+ner—the clinician sees the patient who attends with their 
+family member(s). The clinician also opens the Lyrebird 
+application at the beginning of the appointment, which 
+records the consultation via a dictaphone that is placed on 
+the table. Verbal consent was taken at the start of the con-
+sultation prior to starting the recording in line with the cur -
+rent trust usage policy for Lyrebird. Following this, Lyrebird 
+assimilates the conversation in real time and generates a let-
+ter immediately as the appointment concludes. The Lyrebird 
+letters can be edited post-hoc but were not for the purposes 
+of this study. Separately to this and in a blinded manner, 
+the clinician retrospectively dictates their letter in the usual 
+fashion, before it is sent for typing. Two letter templates 
+with different, appropriate formatting were set up prior for 
+the general neurosurgery and craniofacial clinics. All data 
+was anonymised, and all letters were saved in the hospital’s 
+electronic patient record.
+For the general neurosurgery clinic, there was one cli-
+nician, one patient aged 0–18 years old, and 1–4 family 
+members. In contrast, the MDT clinic contained eight cli-
+nicians (comprising a neurosurgeon, plastic surgeon and/
+or maxillofacial surgeon, speech and language therapist, 
+geneticist, dentist/orthodontist, specialist nurse, and a clini-
+cal psychologist), one patient aged 0–15 years old, and 1–2 
+family members.
+The study included twenty consultations. A comparison 
+between the Lyrebird AI–generated and clinician-dictated 
+letters was then undertaken, using four objective metrics 
+of readability (see supplementary materials for further 
+information):(1) The Flesch–Kincaid Grade Level (FKGL) uses the total 
+number of syllables, words, and sentences to derive the 
+approximate age of schooling needed to understand a 
+given piece of text [7 ]. A higher score confers a higher 
+level of schooling required.
+(2) The Flesch Reading Ease (FRE) was used to assess the 
+overall readability of the clinic letters, in which scores 
+are similarly calculated using the total number of syl-
+lables, words, and sentences [8 ]. Scores span a scale of 
+1–100, with higher scores conferring easier readability.
+(3) The Gunning Fog Index (GFI) uses total words, sen-
+tences, and word complexity to assess the overall com-
+plexity of text [9 ]. On a scale of 0–20, higher scores 
+indicate higher complexity.
+(4) The Simple Measure of Gobbledygook (SMOG index) 
+was used to assess the simplicity of a text by consider -
+ing the polysyllabic word count; higher scores relate 
+to a higher level of schooling required to read the text 
+[10].
+Human rater Likert scale (1–5) assessment was also 
+undertaken by one expert, independent blinded clinician 
+rater—here, they reviewed letters for content accuracy and 
+comprehensiveness, captured as their overall subjective 
+preference. Statistical analysis, using Wilcoxon Signed 
+Rank test, was completed in R (version 4.4.2); a p  < 0.05 
+was deemed statistically significant.
+Results
+All 20 consultations were analysed by both statistical 
+analysis and human rater assessment. As all data were not 
+normally distributed, non-parametric Wilcoxon signed 
+rank test and descriptive statistics (median, interquartile 
+range [IQR]) were used.
+Quantitative analysis
+When using the FKGL metric, the Lyrebird AI–generated 
+clinic letters (median 10.3, IQR 0.75) demonstrated higher 
+readability than the clinician-dictated letters (median 
+10.9, IQR 1.15) (z  = 2.73, p < 0.05). Similarly, the SMOG 
+Index demonstrated that the Lyrebird AI–generated let-
+ters (median 11.7, IQR 1.25) were more readable than 
+the dictated letters (median 13.1, IQR 0.9) (z  =  − 3.36, 
+p < 0.001) (Table  1). There was a non-significant differ -
+ence between the types of letters when assessing them 
+via the GFI ( z =  − 1.22, p = 0.22) and the FRE indices 
+(z =  − 0.84, p = 0.40) (Table  1).
+--- Page 3 ---
+Child's Nervous System           (2026) 42:80  
+ Page 3 of 7    80 
+Table 1  Summary of metrics
+IQR interquartile range, LB LyrebirdFlesch–Kincaid grade level Gunning fog index SMOG index Flesh reading ease Expert clinical rater–Likert scale scores & 
+preference
+Subject AI Clinician AI Clinician AI Clinician AI Clinician Lyrebird 
+letter 
+scoreClinician 
+letter scoreRater’s preference
+1 10.0 10.9 11.8 11.7 11.6 13.1 43.3 41.7 5 3 LB
+2 8.4 11.4 11.3 12.9 11.5 13.3 54.9 45.2 5 3 LB
+3 10.8 11.2 12.6 12.0 12.7 13.5 36.3 43.8 5 4 LB
+4 10.5 12.4 14.5 14.0 13.7 14.6 44.8 39.2 5 3 LB
+5 7.7 10.2 8.3 10.5 10.3 12.7 57.5 49.6 5 3 LB
+6 9.5 11.2 11.7 13.5 11.6 13.5 47.0 44.9 4 4 Unequivocal
+7 11.7 10.7 15.2 12.0 14.3 12.7 40.7 46.3 5 3 LB
+8 7.5 7.7 10.0 8.9 10.7 10.9 59.2 64.4 5 5 Unequivocal
+9 10.0 9.5 12.5 11.0 12.6 12.9 42.0 52.8 5 5 Unequivocal
+10 9.4 10.3 11.1 11.7 11.6 12.4 48.0 53.7 4 5 Clinician
+11 9.6 11.1 11.8 12.2 11.7 12.8 45.8 44.7 5 4 LB
+12 10.4 11.5 13.9 13.9 12.8 13.6 40.4 49.4 4 5 Clinician
+13 11.1 12.2 14.4 15.6 13.1 14.4 35.0 31.2 5 4 LB
+14 10.3 8.4 10.9 10.5 11.3 11.2 57.5 60.3 5 3 LB
+15 10.3 11.0 13.2 13.1 12.7 13.4 37.5 42.9 5 3 LB
+16 10.3 10.1 11.7 12.0 11.7 12.3 43.8 46.2 5 2 LB
+17 10.3 11.0 11.0 13.0 11.3 13.2 39.8 44.6 5 3 LB
+18 10.3 13.8 13.0 15.8 12.9 15.2 35.4 34.6 5 3 LB
+19 10.3 11.5 12.1 13.1 12.0 13.7 47.1 44.6 5 2 LB
+20 10.3 11.1 11.1 11.7 11.4 12.3 47.9 45.0 5 3 LB
+Median 10.3 10.9 11.8 12.5 11.7 13.1 44.3 46.3
+IQR 0.75 1.15 1.95 1.5 1.25 0.9 7.675 5.875
+Wilcoxon 
+signed rank 
+testZ-value = 2.7253 Z-value =  − 1.2274 Z-value =  − 3.3599 Z-value =  − 0.84
+p < 0.05 p = 0.22 p = 0.00078 p = 0.4
+--- Page 4 ---
+ Child's Nervous System           (2026) 42:80 
+    80  Page 4 of 7
+Qualitative analysis
+In the human rater assessment, the Lyrebird AI–generated 
+letters were preferred to clinician-dictated letters in 75% 
+(n = 15) of cases, clinician-dictated for two letters, and three 
+letters in which there was an unequivocal difference. Both 
+Lyrebird AI–generated and clinician-dictated letters held 
+the same content. Importantly, Lyrebird AI–generated let-
+ters did not detail any information that was deemed unsafe 
+or incorrect.
+With regards to content, there were three primary dif-
+ferences between the Lyrebird AI–generated and clinician 
+dictated letters.
+Firstly, when a clinical examination of the patient was 
+conducted (11 out of 20 consultations), Lyrebird AI–gener -
+ated letters consistently offered details of the entire examina-
+tion including negative findings, whereas clinicians dictated 
+only the salient points.
+Secondly, all letters formatted a summary of the manage-
+ment plan at the top of the clinic letter, and outside of the 
+main body of text. However, this plan was comprehensive 
+in all 20 of Lyrebird AI–generated letters, by informing 
+patients and relatives of aspects which required no further 
+action, such as “no further routine imaging required”. Clini-
+cians only dictated aspects of management plans that would 
+result in further action in most cases (14 out of 20 letters).
+Finally, all letters also formatted a summary of the rel-
+evant diagnoses at the top of the clinic letter and outside of 
+the main body of text. In six cases, clinician-dictated letters 
+were more nuanced than the Lyrebird AI letters, containing 
+adjectives that helped allude to the patient’s clinical course, 
+for example: detailing relevant past surgical history; stat-
+ing “incidental finding of posterior fossa arachnoid cyst” as 
+opposed to “posterior fossa arachnoid cyst”; and describ-
+ing “generalised cerebral atrophy” as opposed to “cerebral 
+atrophy”, respectively.
+Discussion
+Present study and literature review
+In this prospective case–control study, we examined the 
+readability of 20 Lyrebird AI–generated versus 20 consult-
+ant-dictated clinic letters. Lyrebird AI was found to signifi-
+cantly improve the readability of clinic letters across 2 of 4 
+metrics, whilst maintaining clinical accuracy. There was a 
+non-significant difference for the remaining metrics. In addi-
+tion to objective measures, an independent rater subjectively 
+described an overall preference for the Lyrebird AI–gener -
+ated letters by a wide margin.
+To our knowledge, this is the first paper to directly 
+compare AI-generated and clinician-dictated clinic letters for real patients, wherein the AI software is purpose built 
+for healthcare documentation. Lyrebird AI significantly 
+improved the readability of clinic letters across 2 of 4 met-
+rics, whilst maintaining accuracy. This indicates that the 
+Lyrebird AI–generated letters are able to convey the same 
+complexity of information at a lower reading age. In addi-
+tion, given the complex nature of specialty neurosurgery 
+and craniofacial clinic there is a certain amount of medical 
+nomenclature such as genetic diagnoses, physical examina-
+tion and operative procedures that cannot be simplified fur -
+ther, which may explain why differences were only found in 
+two of the four metrics.
+Our findings demonstrate that generative AI could be 
+employed to reduce the administrative burden on clinicians. 
+Perhaps one of the most powerful applications of Lyrebird 
+AI is that it can contend with MDT settings to assimilate 
+multiple specialist conversation lines into a concise sum -
+mary that remains readable to non-healthcare professionals.
+When considering these findings, it is important to refrain 
+from generalising all generative AI software into a single 
+entity [11, 12]. The majority of literature has so far been 
+published on the use of the most widely available free chat-
+bot, ChatGPT from Open AI (Table  2) [1, 5, 6, 13–17]. For 
+example, a prospective cohort study carried out in 2024 
+found that ChatGPT was able to increase readability and 
+maintain the accuracy of orthopaedic surgery outpatient 
+clinic letters [13]. However, like other studies, the authors 
+found the chatbot lacked the same language nuance as clini-
+cian-dictated letters, which resulted in sentences that lacked 
+tact and were unnecessarily superfluous [13, 16, 17]. Whilst 
+the current study demonstrates that clinicians do provide 
+more technical nuance in some aspects, particularly in the 
+summary of diagnoses, Lyrebird AI–generated letters gen-
+erally held the same meaning and did not omit any clini -
+cal information that might change the clinical impression 
+or management plan of the patient. This difference may 
+be because Lyrebird AI is a generative AI software that is 
+purpose-built for healthcare documentation.
+Future work
+The potential of Lyrebird AI could be realised further by 
+exploring its text output in a context-dependent manner [6 ]. 
+It has potential for use in settings in which patients are not 
+participants—for example, to summarise decisions made in 
+inter-specialty multi-disciplinary meetings. Additionally, 
+Lyrebird AI has the function to create several custom for -
+matting templates that the clinician can preset. Individual 
+specialties, and indeed individual clinicians, will have pref-
+erence for clinic letter formatting in order to highlight essen-
+tial information. The impact of template refinement should 
+be investigated as a further potential time-saving avenue, 
+--- Page 5 ---
+Child's Nervous System           (2026) 42:80  
+ Page 5 of 7    80 
+Table 2  Summary of studies to date comparing the qualities of AI software–generated to clinician-generated outpatient letters
+Author Year Study type Sample 
+size (n)Setting AI software Comparative metrics Results
+Ellmolla et al. (current 
+study)2024 Prospective case control 20 Real-world
+Paediatric craniofacial 
+subspecialist outpatients 
+and MDTsLyreBird (LyreBird 
+Health, Ltd.)Fleisch–Kincaid grade 
+levelSignificant improvement 
+with AI
+SMOG index Significant improvement 
+with AI
+Gunning fog index No significant difference
+Flesch reading ease No significant difference
+Blinded human rater: 
+subjective preference of 
+letterNo significant difference
+Bass et al April 2025 Prospective comparison 
+study4 Simulated
+Paediatric ENT same day 
+post-surgical dischargeChatGPT 3.5 (Open AI, 
+Ltd.)Blinded human rater: 
+quality of medical infor -
+mationSignificant improvement 
+with AI
+Blinded human rater: ease 
+of readingSignificant improvement 
+with AI
+Blinded human rater: 
+length of letterNo significant difference
+Balloch et al. [19] June 2024 Simulated interventional 
+study47 Simulated
+Adult multi-specialty 
+outpatientsTortus (Tortus AI, Ltd.)
+ChatGPT 4.0 (Open AI, 
+Ltd.)Sheffield assessment 
+instrument for lettersSignificant improvement 
+with AI
+Total timing of consulta-
+tionSignificantly shorter con-
+sultation with AI
+Total time speaking to 
+patientsNo significant difference
+NASA task load index Significant improvement 
+with AI
+Blinded human rater 
+assessment: overall 
+experienceSignificant improvement 
+with AI
+Stoneham et al. [13] April 2024 Prospective cohort study 70 Real-world
+Adult orthopaedic subspe-
+cialist outpatientsChatGPT 3.5 (Open AI, 
+Ltd.)Mean word count Significant increase with AI
+Flesch reading ease Significant worsening with 
+AI
+Flesch–Kincaid grade 
+levelSignificant worsening with 
+AI
+ChatGPT 4.0 (Open AI, 
+Ltd.)Mean word count Significant increase with AI
+Flesch reading ease No significant difference
+Flesch–Kincaid grade 
+levelNo significant difference
+--- Page 6 ---
+ Child's Nervous System           (2026) 42:80 
+    80  Page 6 of 7
+and for enhancing user experience through individualising 
+the software for each healthcare setting.
+These considerations ultimately implicate future work on 
+economic analysis of generative AI use in the clinical set-
+ting. The market for AI tools with healthcare applications 
+is large and growing exponentially larger [18]. By nature 
+of such a market, each individual product will require its 
+own cost-efficacy validation, which remains a barrier, but 
+is essential for wide-scale uptake. It remains imperative 
+that such tools are rigorously validated, and clinical letters 
+are checked for factual content and accuracy by clinicians, 
+which is no different from human-generated letters.
+Limitations
+The limitations of this work include: (1) the objective met-
+rics used are generalised measures of readability, as health-
+care-specific readability metrics do not currently exist to our 
+knowledge; (2) the findings are only applicable to one type 
+of commercially available commercially available genera-
+tive AI software and are therefore not generalisable; and (3) 
+the clinical context is a highly specialised neurosurgical and 
+craniofacial clinic, which again means the findings may not 
+be generalisable to other settings, such as general practice 
+or the emergency department. These limitations highlight 
+the potential focus of future work. Namely, if generative AI 
+is being used to enhance clinician effort, then analysis of 
+overall time and effort saving is essential to further quantify 
+its efficiency as a tool. Balloch et al. [19] have successfully 
+demonstrated this in simulation, with a view to expand to 
+real-world clinical environments.
+Conclusions
+Through the use of both objective readability metrics and 
+subjective blinded clinician ratings, we provide validation 
+of the Lyrebird AI generative software for use in a highly 
+specialist single-clinician general neurosurgery clinic and 
+multi-disciplinary craniofacial clinic environment. Unlike 
+previously described technologies, it does not require the 
+burden of a carefully considered prompt, nor does it require 
+redaction of sensitive patient information. Rather, it is a sin-
+gle software that ambiently listens to clinicians, patients, 
+and families to immediately scribe a readable and accurate 
+letter which can be reviewed and sent without delay. Future 
+work should focus on time, effort, and cost-saving analysis, 
+in addition to template refinement and applications in other 
+clinical settings.
+Supplementary Information The online version contains supplemen-
+tary material available at https:// doi. org/ 10. 1007/ s00381- 026- 07171-6.Author contribution Mohamed Elmolla—data curation, formal anal-
+ysis, methodology Anjum Aarifa Khanom—writing (original draft), 
+writing (review and editing) Ahmad Ali—data curation, formal analy -
+sis, methodology Christian Duncan—data curation, methodology Anu-
+sha Hennedige—data curation, methodology Vejay N. Vakharia—con -
+ceptualisation, data curation, formal analysis, methodology, project 
+administration, resources, software, supervision, validation, visualisa-
+tion, writing (review and editing).
+Data Availability No datasets were generated or analysed during the 
+current study.
+Declarations  
+Conflict of interest The authors declare no competing interests.
+Open Access This article is licensed under a Creative Commons Attri-
+bution 4.0 International License, which permits use, sharing, adapta-
+tion, distribution and reproduction in any medium or format, as long 
+as you give appropriate credit to the original author(s) and the source, 
+provide a link to the Creative Commons licence, and indicate if changes 
+were made. The images or other third party material in this article are 
+included in the article’s Creative Commons licence, unless indicated 
+otherwise in a credit line to the material. If material is not included in 
+the article’s Creative Commons licence and your intended use is not 
+permitted by statutory regulation or exceeds the permitted use, you will 
+need to obtain permission directly from the copyright holder. To view a 
+copy of this licence, visit http://creativecommons.org/licenses/by/4.0/.
+References
+ 1. Van Veen D, Van Uden C, Blankemeier L, Delbrouck JB, Aali 
+A, Bluethgen C, Pareek A, Polacin M, Reis EP, Seehofnerová 
+A, Rohatgi N, Hosamani P, Collins W, Ahuja N, Langlotz CP, 
+Hom J, Gatidis S, Pauly J, Chaudhari AS (2024) Adapted large 
+language models can outperform medical experts in clinical text 
+summarization. Nat Med 30:1134–1142
+ 2. Gesner E, Gazarian P, Dykes P (2019) The burden and burnout 
+in documenting patient care: an integrative literature review. Stud 
+Health Technol Inform 264:1194–1198
+ 3. Sinsky C, Colligan L, Li L, Prgomet M, Reynolds S, Goeders L, 
+Westbrook J, Tutty M, Blike G (2016) Allocation of physician 
+time in ambulatory practice: a time and motion study in 4 special-
+ties. Ann Intern Med 165:753–760
+ 4. Golob JF Jr, Como JJ, Claridge JA (2016) The painful truth: the 
+documentation burden of a trauma surgeon. J Trauma Acute Care 
+Surg 80(5):742–7
+ 5. Goodman KE, Yi PH, Morgan DJ (2024) AI-generated clinical 
+summaries require more than accuracy. JAMA 331:637–638
+ 6. Thirunavukarasu AJ, Ting DSJ, Elangovan K, Gutierrez L, Tan 
+TF, Ting DSW (2023) Large language models in medicine. Nat 
+Med 29:1930–1940
+ 7. Flesch R (1948) A new readability yardstick. J Appl Psychol 
+32:221–233
+ 8. Kincaid JP, Fishburne Jr RP, Rogers RL, Chissom BS (1975) 
+Derivation of new readability formulas (automated readability 
+index, fog count and flesch reading ease formula) for navy enlisted 
+personnel
+ 9. Scott B (2025) The Gunning fog index (or FOG) readability for -
+mula. https:// reada bilit yform ulas. com/ the- gunni ngs- fog- index- or-  
+fog- reada bility- formu la/. Accessed Date Accessed 2025 Accessed
+--- Page 7 ---
+Child's Nervous System           (2026) 42:80  
+ Page 7 of 7    80 
+ 10. Mc Laughlin GH (1969) SMOG grading-a new readability for -
+mula. J Read 12:639–646
+ 11. Chang Y, Wang X, Wang J, Wu Y, Yang L, Zhu K, Chen H, Yi X, 
+Wang C, Wang Y, Ye W, Zhang Y, Chang Y, Yu PS, Yang Q, Xie 
+X (2024) A survey on evaluation of large language models. ACM 
+Trans Intell Syst Technol 15:39
+ 12. Tang L, Sun Z, Idnay B, Nestor JG, Soroush A, Elias PA, Xu Z, 
+Ding Y, Durrett G, Rousseau JF, Weng C, Peng Y (2023) Evaluat-
+ing large language models on medical evidence summarization. 
+NPJ Digit Med 6:158
+ 13. Stoneham AC, Walker LC, Newman MJ, Nicholls A, Avis D 
+(2024) Can artificial intelligence make elective hand clinic 
+letters easier for patients to understand? J Hand Surg Eur Vol 
+49:1269–1270
+ 14. Barak-Corren Y, Wolf R, Rozenblum R, Creedon JK, Lipsett SC, 
+Lyons TW, Michelson KA, Miller KA, Shapiro DJ, Reis BY, Fine 
+AM (2024) Harnessing the power of generative AI for clinical 
+summaries: perspectives from emergency physicians. Ann Emerg 
+Med 84:128–138
+ 15. Roberts RHR, Ali SR, Dobbs TD, Whitaker IS (2024) Can large 
+language models generate outpatient clinic letters at first consul-
+tation that incorporate complication profiles from UK and USA aesthetic plastic surgery associations? Aesthet Surg J Open Forum 
+6:ojad109
+ 16. Ali SR, Dobbs TD, Hutchings HA, Whitaker IS (2023) Using 
+ChatGPT to write patient clinic letters. Lancet Digit Health 
+5:e179–e181
+ 17. Caterson J, Ambler O, Cereceda-Monteoliva N, Horner M, Jones 
+A, Poacher AT (2024) Application of generative language models 
+to orthopaedic practice. BMJ Open 14:e076484
+ 18. Hendrix N, Veenstra DL, Cheng M, Anderson NC, Verguet S 
+(2022) Assessing the economic value of clinical artificial intel-
+ligence: challenges and opportunities. Value Health 25:331–339
+ 19. Balloch J, Sridharan S, Oldham G, Wray J, Gough P, Robinson R, 
+Sebire NJ, Khalil S, Asgari E, Tan C, Taylor A, Pimenta D (2024) 
+Use of an ambient artificial intelligence tool to improve quality of 
+clinical documentation. Future Healthc J 11:100157
+Publisher's Note Springer Nature remains neutral with regard to 
+jurisdictional claims in published maps and institutional affiliations.

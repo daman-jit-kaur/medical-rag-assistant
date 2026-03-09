@@ -1,0 +1,604 @@
+
+--- Page 1 ---
+Extracting Pain Care Quality Indicators from U.S.
+Veterans Health Administration Chiropractic
+Care Using Natural Language Processing
+Brian C. Coleman1,2Dezon Finch3Rixin Wang1,2Stephen L. Luther3,4Alicia Heapy1,5
+Cynthia Brandt1,2Anthony J. Lisi1,2
+1Pain Research, Informatics, Multimorb idities, and Education (PRIME) Center,
+VA Connecticut Healthcare System, West Haven, Connecticut, United States
+2Yale Center for Medical Informatics, Yale School of Medicine, Yale
+University, New Haven, Connecticut, United States
+3Research Service, James A. Haley Veterans Hospital, Tampa, Florida,United States
+4College of Public Health, University of South Florida, Tampa, Florida,
+United States
+Appl Clin Inform 2023;14:600 –608.Address for correspondence Brian C. Coleman, DC, Pain Research,
+Informatics, Multimorbidities, and Education (PRIME) Center, VAConnecticut Healthcare System, Mail Code: 11-ACSL-G, 950 Campbell
+Avenue, West Haven, CT 06516, United States
+(e-mail: Brian.Coleman@Yale.edu).
+5Department of Psychiatry, Yale School of Medicine, Yale University,New Haven, Connecticut, United States
+Keywords
+►musculoskeletal pain
+►natural language
+processing
+►Veterans health
+►pain care qualityAbstract Background Musculoskeletal pain is common in the Veterans Health Administration
+(VHA), and there is growing national use of chiropractic services within the VHA. Rapidexpansion requires scalable and autonomous solutions, such as natural languageprocessing (NLP), to monitor care quality. Previous work has de ﬁned indicators of pain
+care quality that represent essential elements of guideline-concordant, comprehensive
+pain assessment, treatment planning, and reassessment.Objective Our purpose was to identify pain care quality indicators and assess patterns
+across different clinic visit types using NLP on VHA chiropractic clinic documentation.Methods Notes from ambulatory or in-hospital chiropractic care visits from Octo-
+ber 1, 2018 to September 30, 2019 for patients in the Women Veterans Cohort Studywere included in the corpus, with visits identi ﬁed as consultation visits and/or
+evaluation and management (E&M) visits. Des criptive statistics of pain care quality
+indicator classes were calculated and compared across visit types.
+Results There were 11,752 patients who received any chiropractic care during FY2019,
+with 63,812 notes included in the corpus. Consultation notes had more than twice the totalnumber of annotations per note (87.9) as follow-up visit notes (34.7). The mean number oftotal classes documented per note across the entire corpus was 9.4 (standard deviation[SD]¼1.5). More total indicator classes were documented during consultation visits with
+(mean ¼14.8, SD ¼0.9) or without E&M (mean ¼13.9, SD ¼1.2) compared to follow-
+up visits with (mean ¼9.1, SD ¼1.4) or without E&M (mean ¼8.6, SD ¼1.5). Co-
+occurrence of pain care quality indicators describing pain assessment was high.
+Conclusion VHA chiropractors frequently document pain care quality indicators,
+identi ﬁable using NLP, with variability across different visit types.
+received
+January 5, 2023accepted after revision
+April 27, 2023
+accepted manuscript onlineMay 10, 2023DOI https://doi.org/
+10.1055/a-2091-1162.ISSN 1869-0327.© 2023. The Author(s).
+This is an open access article published by Thieme under the terms of the
+Creative Commons Attribution-NonDeri vative-NonCommercial-License,
+permitting copying and reproduction so long as the original work is given
+appropriate credit. Contents may not be used for commercial purposes, oradapted, remixed, transformed or built upon. (https://creativecommons.org/
+licenses/by-nc-nd/4.0/)
+Georg Thieme Verlag KG, Rüdigerstraße 14, 70469 Stuttgart,
+GermanyResearch ArticleTHIEME
+600
+Accepted Manuscript online: 2023-05-10   Article published online: 2023-08-02
+--- Page 2 ---
+Background and Signi ﬁcance
+Musculoskeletal pain is highly burdensome, carrying signi ﬁ-
+cant direct health care costs and indirect costs through
+functional impacts, disability, and lost productivity.1–3It is
+among the most common reasons individuals in the United
+States seek health care,4especially in the U.S. military
+Veteran population receiving health care in the VeteransHealth Administration (VHA).
+5
+In 2009, VHA issued Directive 2009-053 to promote quality
+pain care consistent with the VHA National Pain ManagementStrategy.
+6The directive outlined essential components of
+high-quality pain care to include (1) timely and appropriate
+pain assessment, (2) development and enactment of a paintreatment plan, and (3) subsequent reassessment of the
+effectiveness of the plan. The directive also reaf ﬁrmed VHA ’s
+commitment to providing pain care consistent with theStepped Care Model for Pain Management,
+7which promotes
+early self-management with stepwise progression to primary
+care management and increasingly advancing specialty caremanagement when clinically appropriate. The earliest steps of
+the Stepped Care Model promote the use of many guideline-
+recommended nonpharmacologic approaches for pain,includ-ing psychological/behavioral therapies, exercise/movement
+therapies, and manual therapies.
+8
+One VHA specialty frequently utilizing many of these non-
+pharmacologic approaches for pain is chiropractic services.9
+The VHA is the largest integrated health care system offeringchiropractic services, ﬁrst as a covered service in 2000 and
+later as an integrated service at VHA facilities beginning in
+2004.
+10Since 2018, VHA chiropractic care has undergone
+transformative expansion following legislative and executiveaction.
+11,12VHA Chiropractic Program Of ﬁce data show a
+growth of over 250% in facilities offering on-site chiropractic
+services from Fiscal Year (FY) 2017 (87 facilities) to FY2022
+(221 facilities). Similarly, the total number of visits and
+patients receiving chiropractic care increased substantiallyfrom FY2017 (208,400 visits by 47,486 Veterans) to FY2022
+(393,532 visits by 93,360 Veterans).
+Among the backdrop of rapid expansion, a scalable,
+dynamic solution to monitoring the quality of chiropractic
+care delivered across the national VHA enterprise is needed.
+Current state quality assessment through the VHA OngoingProfessional Practice Evaluation (OPPE) requirements is typ-
+ically measured via time-intensive, peer-conducted chart
+review to evaluate predetermined OPPE minimum stand-ards. While easier to access and use, structured electronic
+health record (EHR) data present limitations to support in-
+depth evaluation of clinical care delivered across a nationalhealth system.
+Natural language processing (NLP) of clinic documenta-
+tion offers a potential opportunity to extract care qualitydata from unstructured EHR data on a national scale.
+13NLP is
+a diverse, integrated ﬁeld utilizing computational techniques
+for linguistic analysis to achieve human-like language proc-essing.
+14Information extraction from unstructured text
+using NLP has been successful across multiple sources,
+including physician reports,15radiology reports,16andpatient experience surveys,17and across different settings,
+including VHA.18NLP has been used to evaluate pain care
+quality (PCQ) in VHA primary care clinics, including devel-
+oping an extraction tool,19a PCQ indicator score,20and
+artiﬁcial intelligence methods to detect instances of pain
+assessment.20,21The de ﬁned PCQ indicators represent
+essential elements of guideline-concordant, comprehensive
+pain assessment, treatment planning, and reassessment, andtheir documentation in the clinical text note may offer a
+measurable representation of the quality of pain care being
+provided.
+Objectives
+While the previously developed NLP algorithms were built
+from VA primary care progress notes, the lexicon describing
+PCQ indicators should theoretically be consistent acrossprimary and specialty care clinic settings. We propose in
+this work to explore the application of the previously devel-
+oped NLP algorithm to identify PCQ indicators in chiropracticclinics, a VHA specialty care clinic frequently evaluating and
+managing musculoskeletal pain conditions. The primary
+objective of the study was to assess PCQ patterns docu-mented by chiropractors, describe their distributions across
+different clinic visit types, and compare the co-occurrence of
+documented pain assessment classes to a previous samplefrom primary care visits for pain.
+Methods
+Study Design, Setting, Participants, and Data Sources
+This observational study was a secondary analysis of theWomen Veterans Cohort Study
+22—an EHR cohort of post-
+9/11 men and women Veterans who served during Operation
+Enduring Freedom, Operation Iraqi Freedom, and Operation
+New Dawn (OEF/OIF/OND). Study reporting was informed by
+the Strengthening the Reporting of Observational Studies inEpidemiology (STROBE).
+23This study was approved by the VA
+Connecticut Healthcare System Institutional Review Board.
+Patients with at least one visit to a chiropractic clinic at a
+VHA facility from October 1, 2018 to September 30, 2019
+(FY2019) were included in the sample. Patient demographic
+characteristics were obtained from the EHR, including age(as of October 1, 2018), sex, race, and ethnicity.
+All chiropractic care visits during the study period were
+identi ﬁed using a VHA administrative clinic stop code iden-
+tiﬁer for “Chiropractic Care. ”Access to chiropractic care in
+the VHA most often requires the placement of a referral order
+to initiate a consultation. Visits were identi ﬁed as consult
+visits if linked to an ordered consultation request in the EHR
+and follow-up visits if not. Any visit with an “Evaluation and
+Management ”(E&M) current procedural terminology (CPT)
+code (99201 –99205, 99211 –99215) were identi ﬁed as
+examination visits. Four groups of clinic visits were de ﬁned
+for comparison of documentation across types of visits —
+consult visits with an E&M code, consult visits without an
+E&M code, follow-up visits with an E&M code, and follow-up
+visits without an E&M code.
+Applied Clinical Informatics Vol. 14 No. 3/2023 © 2023. The Author(s).Extracting Pain Care Quality Indicators from VHA Chiropractic Care Using NLP Coleman et al. 601
+
+--- Page 3 ---
+All clinical text note documents (VHA text integration
+utilities documents) were extracted for the identi ﬁed visits
+to build a corpus of clinic visit notes (and sub-corpora for
+each clinic visit type). Only notes describing face-to-face (i.e.,
+in-person) patient encounters ( “ambulatory ”or“in-hospi-
+tal”visits) were retained for the NLP analysis, based on a
+structured visit type identi ﬁer in the EHR. Telehealth visits
+were uncommon in this corpus describing visits fromFY2019 (pre-COVID-19 pandemic) and were not included.
+24
+Other notes linked to the identi ﬁed visits but describing
+historical events, clinical reminders, telecommunications,electronic consultations, or nursing notes were excluded
+from the analysis.
+Analysis
+We applied a previously developed and described rule-based
+NLP algorithm using Python 3.5 to extract PCQ indicatorsfrom the corpus.
+20The algorithm performed strongly in a
+study of 1 year of primary care notes from pain visits (F-
+measure ¼91.9%, Precision ¼93.0%, Recall ¼90.9%).20
+The algorithm uses a line-by-line analysis of text docu-
+ments paired with rule-based token regular expression
+matching to identify annotation spans —or tagged snippets
+of text —mapped to PCQ indicator classes de ﬁned by a
+vocabulary. The vocabulary was reviewed by the study
+team to review appropriateness for application in chiroprac-tic clinic documentation. A random sample of 100 chiroprac-
+tic clinic notes was reviewed after the NLP algorithm was
+applied to generate a qualitative impression of the model ’s
+face validity
+25in the unseen corpus. Quantitative evaluation
+of this process was beyond the objectives of this study.
+PCQ indicator classes included those describing pain
+assessment, treatment planning, and reassessment, for a
+total of 25 indicators ( ►Supplementary Table S1 , available
+in the online version). We also examined the subset of 11
+classes describing pain assessment to compare documenta-
+tion by chiropractors to a reference sample derived fromprimary care documentation.
+21
+Study Outcomes
+As an exploratory analysis, descriptive statistics were calcu-
+lated for the presence of PCQ indicators across the entire
+corpus and across notes for each of the four unique clinic visittypes.
+The number of PCQ indicator classes present was calcu-
+lated for each note, with a greater number of present PCQindicator classes presumed to re ﬂect a broader array of the
+quality of pain care delivered. The prevalence of notes with
+each individual indicator class and each total number ofindicator classes was calculated as the percentage of the
+entire corpus and each visit type.
+The within note frequency of each individual PCQ indica-
+tor class was identi ﬁed, with a greater number describing
+more mentions of the indicator class. The mean number of
+mentions of each class per note were calculated for all notesand the four clinic visit types.
+The presence or absence of 11 PCQ indicator classes
+describing pain assessment was evaluated for co-occurrenceof classes —or simultaneous documentation of individual
+PCQ indicator classes in the same note. The percentages ofall notes and notes of each visit type in the chiropractic clinic
+note corpus were calculated for varying levels of co-occur-
+rence, and aggregate percentages were compared topreviously published data from primary care visits for mus-
+culoskeletal pain diagnoses by Fodeh et al.
+17
+Results
+There were 11,752 patients who received any chiropractic
+care during FY2019 ( ►Table 1 ), with 11,416 having at
+least one ambulatory or in-hospital visit and 336 patients
+excluded. Characteristics of the NLP corpus of ambulatory orin-hospital visits are shown in
+►Table 2 , across all notes and
+by visit type. The entire corpus included 63,812 notes from
+52,117 visits across 80 VHA facilities, with over 2.6 millionannotations of PCQ indicators present across the corpus. The
+most common text spans that were annotated across the
+entire corpus and their respective PCQ indicator classesare shown in
+►Supplementary Table S2 (available in the
+online version). The most common text span by far was
+“pain”(Pain Mention) accounting for 12.6% of all annota-
+tions, with “low back ”(Pain Site) the second most common
+(2.0% of all annotations).
+Table 1 Characteristics of Women Veterans Cohort Study
+patients receiving VHA chir opractic care during FY2019
+Variable Total
+N 11,752
+Age,amedian [Q1, Q3], y (%) 39 [34, 48]
+<40 y 52.6
+40–49 y 25.6
+50–64 y 20.7
+65 years and over 1.1
+Sex (%)
+Female 15.8
+Male 84.2
+Race (%)
+White 73.5Black or African American 15.7
+Asian 2.2
+Native Hawaiian or
+Other Paci ﬁcI s l a n d e r1.2
+American Indian or Alaska Native 1.0
+Mixed race 1.3Other/unknown 5.1
+Ethnicity (%)
+Hispanic or LatinX 12.0Not Hispanic or LatinX 88.0
+Abbreviation: VHA, Veterans Health Administration.
+aAge as of October 1, 2018.
+Applied Clinical Informatics Vol. 14 No. 3/2023 © 2023. The Author(s).Extracting Pain Care Quality Indicators from VHA Chiropractic Care Using NLP Coleman et al. 602
+
+--- Page 4 ---
+Follow-up visit notes made up 88.3% of the entire corpus
+and were more likely to not have an E&M code present (63.4%
+of all notes). Consult notes were more likely to have an E&M
+code associated with the visit (6.9% of all notes) than not(4.7% of all notes). Consult notes had more than twice the
+total number of annotations per note (87.9) as follow-up visit
+notes (34.7) on average. Across all chiropractic care notes,only 3.8% did not include any documentation of PCQ indica-
+tors. These notes were most commonly for follow-up visits
+and frequently included telecommunications visit notes thatwere miscoded as ambulatory or in-hospital visits upon
+manual review.
+The distributions of the total number of PCQ indicator
+classes across the entire corpus and by visit type are shownin
+►Fig. 1 . The mean number of total classes documented per
+note across the entire corpus was 9.4 (standard deviation
+[SD]¼1.5). More total indicator classes were documented
+during consult visits with or without E&M CPTs (consult with
+E&M: mean ¼14.8, SD ¼0.9; consult without E&M: mean
+¼13.9, SD ¼1.2) compared to follow-up visits with orTable 2 Corpus characteristics from ambulatory or in-hospital only chiropractic clinic visits from FY2019, by visit type
+Visit type
+Variable Total Consult, E&M Consult, no E&M Follow-up, E&M Follow-up, no E&M
+Patients 11,416 4,339 2,980 5,020 7,890
+Facilities 80 72 72 75 80
+Visits 52,117 4,421 3,022 13,690 33,017Notes 63,812 4,425 3,024 15,884 40,479Annotations 2,608,565 418,148 236,736 612,413 1,341,268
+Abbreviation: E&M, evaluation and management.
+Fig. 1 Prevalence of chiropractic clinic notes with total number of pain ca re quality indicator classes, by visit type (with mean and standard
+deviation).
+Applied Clinical Informatics Vol. 14 No. 3/2023 © 2023. The Author(s).Extracting Pain Care Quality Indicators from VHA Chiropractic Care Using NLP Coleman et al. 603
+
+--- Page 5 ---
+without E&M (follow-up with E&M: mean ¼9.1, SD ¼1.4;
+follow-up without E&M: mean ¼8.6, SD ¼1.5).
+►Fig. 2 shows the relationship between PCQ indicator
+class frequency within a note (as the mean number of
+mentions) and the class prevalence across the entire corpus.Across all notes and across notes for each visit type, classes
+with higher prevalence across the corpus (or sub-corpus)
+were also mentioned more frequently, on average, within anote. The most common classes were consistent across all
+notes and visit types and included Pain Mention, Chiroprac-
+tic, Pain Site, Physical Diagnosis, and Etiology. The leastcommon classes were similarly consistent across all notes
+and visit types, describing Diurnal Variation, Implantables,
+and Mental Health. The remaining classes were mentionedwith similar within note frequencies across all notes and visit
+types. However, they had a greater prevalence across the
+corpora of consult visits with or without E&M than withinthe corpora of follow-up notes.
+When examining only the subset of 11 pain assessment
+classes (
+►Fig. 3 ), over 50% of all chiropractic clinic notes
+documented at least four different classes (consult with
+E&M ¼94.8%; consult without E&M ¼87.2%; follow-up
+with E&M ¼46.9%; follow-up without E&M ¼46.5%). Great-
+er co-occurrence of pain assessment classes was present in
+all chiropractic care visit types compared to the reference
+sample of 1,058 primary care pain visit notes by Fodeh et al.21Discussion
+Monitoring and evaluating pain care to ensure quality is a
+high priority for the VHA. A challenge presents in unifying
+and applying solutions across multiple specialties providinghealth care services for musculoskeletal pain in the VHA ’s
+Stepped Care Model for Pain Management. In this study, we
+applied a rule-based NLP algorithm developed in primarycare documentation to chiropractic care documentation as
+one specialty delivering musculoskeletal pain care in the
+VHA. A scalable solution for monitoring PCQ in VHA chiro-practic clinics nationally is essential given the rapid expan-
+sion of VHA chiropractic services nationally since 2017, with
+adoption of modernized processes that move beyond cur-rent-state time-intensive manual chart review methods for
+quality monitoring. Operationalizing this process, including
+determining the computational infrastructure needed tosupport real-time (or near real-time) monitoring, is impor-
+tant future work.
+The application of the existing PCQ indicator NLP algo-
+rithm in an unseen corpus of notes from a separate clinical
+discipline was based on the premises that (1) indicators of
+quality pain care would be consistent across disciplinesmanaging musculoskeletal pain and (2) the terminology
+describing how pain care is documented is reasonably
+similar across disciplines. While formal validation of the
+Fig. 2 Pain care quality indicator class mentions per note by class prevalence across corpus, by visit type.
+Applied Clinical Informatics Vol. 14 No. 3/2023 © 2023. The Author(s).Extracting Pain Care Quality Indicators from VHA Chiropractic Care Using NLP Coleman et al. 604
+
+--- Page 6 ---
+algorithm ’s performance in the corpus of chiropractic clinic
+notes was not performed in this study, we took steps toensure it was appropriate for the study ’s primary purpose
+before comparing PCQ indicator patterns across different
+visit types. The rule-based NLP model used a lookup vocab-ulary that was reviewed by the study team before application
+to review the PCQ indicator classes and the terminology
+linked to each class. After applying the NLP algorithm, wealso reviewed a sample of model-annotated notes to con ﬁrm
+face validity and appropriateness for use in a corpus of
+chiropractic clinic notes. While applied in only a singleVHA specialty pain care discipline in this study, application
+of the NLP algorithm in other nonprimary care settings is
+likely reasonable after ensuring appropriateness with man-ual review.
+Ourﬁndings show that VHA chiropractors frequently
+document multiple PCQ indicators across notes and visits.We identi ﬁed a direct relationship between the most preva-
+lent indicator classes across the corpus and the average
+number of mentions of a class per note. When classes werementioned more frequently across the entire collection of
+notes, they were also mentioned more frequently within
+individual notes. The individual classes mentioned mostfrequently across the corpus and within individual notes
+were generally expected. Their high per note prevalence maybe attributable to the depth of evaluation of a patient ’s pain
+in a thorough pain history with respect to location and
+etiology and the use of multiple physical diagnosis proce-dures as part of a comprehensive musculoskeletal and
+neuromuscular examination to evaluate a patient ’s pain
+and functional status and inform the management plan.
+26
+The most common text spans also support attribution to
+chiropractic practice as they described pain, especially spinal
+pain (e.g., low back or neck), range of motion (e.g., ﬂexion,
+rotation), and chiropractic treatment (e.g., spinal manipula-
+tion). The most common text spans may be useful in devel-
+oping a standardized vocabulary and ontology ofchiropractic care to support future NLP evaluation in the
+clinical discipline.
+Of interest was Mental Health among the classes men-
+tioned least frequently, given comorbid pain and mental
+health conditions are common in the OEF/OIF/OND Veteran
+population
+27,28and those receiving VHA chiropractic care.29
+Further, recognition of the contributions of psychosocial
+factors, and mental health conditions as an extension of
+those factors, to a patient ’s pain experience is an expected
+Fig. 3 Co-occurrence of subset of pain care quality indicators describing pain assessment, organized by visit type. The height of each stacked
+bar represents proportion of notes with at least the speci ﬁed lower bound number of pain care quality indicators./C3Comparison data from
+primary care pain visit notes from Fodeh SJ, Finch D, Bouayad L, et al. Classifying clinical notes with pain assessment using machine learning.
+Med Biol Eng Comput 2018;56(7):1285 –1292
+Applied Clinical Informatics Vol. 14 No. 3/2023 © 2023. The Author(s).Extracting Pain Care Quality Indicators from VHA Chiropractic Care Using NLP Coleman et al. 605
+
+--- Page 7 ---
+best practice of chiropractic care consistent with a biopsy-
+chosocial model of care.26We suspect this ﬁnding is due to
+chiropractors not considering or not documenting mental
+health conditions or psychosocial factors related to mental
+health, given the vocabulary was viewed as appropriate bythe study team. However, a disconnect between the algo-
+rithm ’s vocabulary for the Mental Health class and how
+chiropractors are documenting mental health consider-ations in their notes could also be contributory and is a
+potential area for future formal evaluation. Our ﬁndings
+suggest an opportunity may exist for quality improvementrelated to consideration of mental health conditions and
+symptoms by VHA chiropractors, while also demonstrating
+the generalizability of a scalable, NLP quality monitoringsolution to identify potential areas for targeted quality
+improvement initiatives.
+Ourﬁndings regarding the documentation of PCQ indi-
+cators by visit type showed expected but interesting docu-
+mentation patterns. Consult visits consistently had many
+more PCQ indicator classes documented than follow-upvisits, which was expected. However, the presence of an
+E&M CPT code was not necessarily re ﬂective of more PCQ
+indicators documented in either consult or follow-up visits.We suspect this may re ﬂect the “minimum components ”
+requirements of E&M coding in use during FY2019 or may
+reﬂect a known lack of ﬁdelity in outpatient clinician coding,
+of which under-coding is common.
+30,31
+When evaluating the subset of pain assessment classes for
+co-occurrent documentation in comparison to the referencesample of primary care notes, chiropractic clinic notes
+showed consistent documentation of more assessment clas-
+ses across all visit types. We suspect this is likely due to thefocused nature of a chiropractic care visit on one or a few
+musculoskeletal pain conditions —while pain may be one of
+many conditions being managed in a typical primary care
+visit. Repeating our methods in corpora of notes from other
+VHA pain care specialties would likely yield similar patternsof pain assessment. This highlights the bene ﬁts of the
+collaborative structure of the VHA in providing integrated
+and interdisciplinary team-based pain care with facilitatedaccess to maximize the quality of pain assessment.
+32Impor-
+tant future work should also evaluate how patient factors,
+such as demographic characteristics, and visit factors, suchas visit type or method of health care delivery (e.g., face-to-
+face vs. telehealth), in ﬂuence documentation patterns across
+different VHA pain care settings.
+As in any NLP study, our study is ultimately limited by the
+contents and quality of the text documents that are proc-
+essed. While NLP of clinical notes can allow analyses thatmove beyond structured data elements captured in the
+EHR, secondary analysis is limited by the contents collected
+and entered at the point of care for clinical purposes by thedocument writer and may not fully re ﬂect what is performed
+in the visit. In some cases, documentation may under-
+represent details of the patient –clinician encounter, while
+in others, historical documentation may be carried forward
+for reference as an over-representation. Other limitations
+include the use of templated text within clinic notes. Forexample, templated statements documenting patient con-
+sent may include text spans related to PCQ indicator classes(e.g., “…I advised patient on the bene ﬁts and risks of spinal
+manipulation <Treatment >…”), but not con ﬁrm an indicator
+was present during the visit. Our approach was to broadlyexplore the application of the existing algorithm in chiro-
+practic clinic notes and thus we did not aim to discern the
+intentions of PCQ indicator mentions using assertion ornegation.
+We also recognize limitations related to short communi-
+cation notes, most often due to inaccurate coding of notetypes or multiple notes linked to an individual visit. We
+attempted to limit our corpus to only ambulatory and in-
+hospital note types to focus our analysis on notes document-ing clinical encounters. However, it was evident during
+review that inaccurate coding of note types led to the
+inclusion of other types of notes in the corpus, for exampletelecommunications notes describing scheduling or
+telephone follow-up on patient status or diagnostic test
+ﬁndings. Further, multiple notes could be linked to an
+individual visit identi ﬁer that often were addenda describing
+trainee participation in notes or other short, administrative
+communications. As our analysis was performed at thenote level, each of these were considered distinct notes.
+Future work should consider alternative strategies, such as
+only evaluating notes authored by the attending chiropractoror concatenating all notes related to the same visit identi ﬁer
+to resolve to a single collected document per visit.
+Conclusion
+Our study demonstrates that a PCQ indicator NLP algorithm
+developed from primary care pain visit notes may have
+utility in VHA pain specialty care for the purposes of quality
+care monitoring on a national scale. We identi ﬁed patterns of
+frequently documented PCQ indicators by VHA chiropractors
+that can be used to inform quality improvement initiativesrelated to pain evaluation and management. NLP may be a
+useful approach in future work to study features of pain care,
+including chiropractic care, not evident in structured EHRdata. Developing standardized, comprehensive ontologies
+describing pain care and chiropractic care may enhance
+validity and reproducibility of results. Future applicationsof this NLP algorithm should investigate relationships
+between PCQ indicators and patient characteristics as part
+of EHR-based phenotyping efforts, which may inform clinicaldecision making and ensure delivery of high-quality and
+equitable pain care in VHA pain specialty clinics, including
+chiropractic clinics.
+Clinical Relevance Statement
+Natural language processing is an approach that may facilitate
+evaluation of pain care quality in unstructured data from
+specialty pain care, including chiropractic clinic documenta-tion. Veterans Health Administration chiropractors frequently
+document many pain care quality indicators, with different
+patterns noted across consultation and follow-up visit types
+Applied Clinical Informatics Vol. 14 No. 3/2023 © 2023. The Author(s).Extracting Pain Care Quality Indicators from VHA Chiropractic Care Using NLP Coleman et al. 606
+
+--- Page 8 ---
+and visits with or without evaluation and management pro-
+cedural codes. These results can inform education and qualityimprovement initiatives related to evaluation and manage-
+ment of pain in clinical practice.
+Multiple-Choice Questions
+1. The greatest average number of pain care quality indicator
+classes was documented in which type of VHA chiroprac-
+tic care visit?a. Consultation visit with an evaluation and management
+CPT
+b. Consultation visit without an evaluation and manage-
+ment CPT
+c. Follow-up visit with an evaluation and management
+CPT
+d. Follow-up visit without an evaluation and management
+CPT
+Correct Answer: The correct answer is option a. Consul-
+tation visit with an evaluation and management CPT. In
+consultation visits with an evaluation and management
+CPT, an average of 14.8 pain care quality indicator classeswere documented. Consultation visits without an evalua-
+tion and management CPT had 13.9 classes documented
+on average. Follow-ups with (9.1) or without (8.6) anevaluation and management CPT had fewer pain care
+quality indicator classes documented.
+2. VHA chiropractors infrequently documented which of the
+following pain care quality indicator classes?
+a. Pain Siteb. Physical Diagnosis
+c. Mental Health
+d. Etiology
+Correct Answer: The correct answer is option c. Mental
+Health. Chiropractors infrequently documented “Mental
+Health ”indicators. It is unclear if our ﬁnding is due to
+chiropractors not considering or not documenting men-
+tal health conditions or psychosocial factors related tomental health, a disconnect between the algorithm ’s
+vocabulary for the Mental Health class and how chiro-
+practors are documenting mental health considerationsin their notes, or some combination of these and other
+factors.
+Availability of Data and Materials
+To maximize protection security of Veterans ’data while
+making these data available to researchers, the U.S. De-partment of Veterans Affairs (VA) developed the VA Infor-
+matics and Computing Infrastructure (VINCI). VA
+researchers must log onto VINCI via a secure gateway orvirtual private network connection (VPN) and use a
+virtual workspace on VINCI to access and analyze VA
+data. By VA Of ﬁce of Research and Development policy,
+VINCI does not allow the transfer of any patient-level data
+out of its secure environment without special permission.
+Researchers who are not VA employees must be vettedand receive “without compensation ”(WOC) employee
+status to gain access to VINCI. All analyses performedfor this study took place on the VINCI platform. For
+questions about data access, contact study lead, Dr. Brian
+C. Coleman (Brian.Coleman2@va.gov) or the VA Of ﬁce of
+Research and Development (VHACOORDRegulatory@va.
+gov).
+Protection of Human and Animal Subjects
+The study was performed in compliance with the World
+Medical Association Declaration of Helsinki on EthicalPrinciples for Medical Research Involving Human Sub-
+jects, and was reviewed and approved by the VA Connect-
+icut Healthcare System Institutional Review Board.
+Funding
+This study was funded by the Health Services Researchand Development, (grant numbers: CIN-13-407 and IIR-
+12-118) and U.S. Department of Health and Human
+Services, National Institutes of Health, National Centerfor Complementary and Integrative Health, (grant num-
+ber: K08AT011570), and NCMIC Foundation.
+Conﬂict of Interest
+None declared.
+Acknowledgements
+The contents of this manuscript represent the view of the
+authors and do not necessarily re ﬂect the position or
+policy of the U.S. Department of Veterans Affairs, the
+National Institutes of Health, nor the United States Gov-
+ernment. This material is based upon work supported bythe National Center for Complementary and Integrative
+Health of the National Institutes of Health under Award
+Number K08AT011570, the Department of Veterans
+Affairs, Veterans Health Administration, Of ﬁce of Re-
+search and Development, and Health Services Researchand Development (IIR-12-118 and CIN-13-407), and the
+NCMIC Foundation, with resources and the use of facilities
+at the VA Connecticut Healthcare System. The authorshave no additional con ﬂicts of interest, ﬁnancial or oth-
+erwise, to disclose.
+References
+1Hoy D, March L, Brooks P, et al. The global burden of low back pain:
+estimates from the Global Burden of Disease 2010 study. AnnRheum Dis 2014;73(06):968 –974
+2Hurwitz EL, Randhawa K, Yu H, Côté P, Haldeman S. The Global Spine
+Care Initiative: a summary of the global burden of low back andneck pain studies. Eur Spine J 2018;27(suppl 6):796 –801
+3Blyth FM, Briggs AM, Schneider CH, Hoy DG, March LM. The global
+burden of musculoskeletal pain-where to from here? Am J PublicHealth 2019;109(01):35 –40
+4St Sauver JL, Warner DO, Yawn BP, et al. Why patients visit their
+doctors: assessing the most prevalent conditions in a de ﬁned
+American population. Mayo Clin Proc 2013;88(01):56 –67
+5Goulet JL, Kerns RD, Bair M, et al. The musculoskeletal diagnosis
+cohort: examining pain and pain care among Veterans. Pain 2016;157(08):1696 –1703
+Applied Clinical Informatics Vol. 14 No. 3/2023 © 2023. The Author(s).Extracting Pain Care Quality Indicators from VHA Chiropractic Care Using NLP Coleman et al. 607
+
+--- Page 9 ---
+6US Department of Veterans Affairs. VA Directive 2009-053 - Pain
+Management. Washington, DC; US Department of VeteransAffairs; 2009
+7Kerns RD, Philip EJ, Lee AW, Rosenberger PH. Implementation of
+the Veterans health administration national pain management
+strategy. Transl Behav Med 2011;1(04):635 –643
+8Kligler B, Bair MJ, Banerjea R, et al. Clinical policy recommenda-
+tions from the VHA state-of-the-art conference on non-pharma-cological approaches to chronic musculoskeletal pain. J GenIntern Med 2018;33(1, suppl 1):16 –23
+9Lisi AJ, Salsbury SA, Hawk C, et al. Chiropractic integrated care
+pathway for low back pain in Veterans: results of a delphiconsensus process. J Manipulative Physiol Ther 2018;41(02):137–148
+10Lisi AJ, Brandt CA. Trends in the use and characteristics of
+chiropractic services in the Department of Veterans Affairs. JManipulative Physiol Ther 2016;39(05):381 –386
+11Military Conssstruction, Veterans Affairs, and Related Agencies
+Appropriations Act of 2018, Pub. L. 115-141, 132 Stat. 348
+(March 23, 2018)
+12US Department of Veterans Affairs. VA Directive 2018-1210 -Chiropractic Care. Washington, DC: US Dept. of Veterans Affairs;2018
+13Ohno-Machado L. Realizing the full potential of electronic healthrecords: the role of natural language processing. J Am Med InformAssoc 2011;18(05):539
+14Nadkarni PM, Ohno-Machado L, Chapman WW. Natural languageprocessing: an introduction. J Am Med Inform Assoc 2011;18(05):544–551
+15Rousseau JF, Ip IK, Raja AS, et al. Can automated retrieval of data
+from emergency department physician notes enhance the imag-
+ing order entry process? Appl Clin Inform 2019;10(02):189 –198
+16Sevenster M, Buurman J, Liu P, Peters JF, Chang PJ. Natural
+language processing techniques for extracting and categorizingﬁnding measurements in narrative radiology reports. Appl Clin
+Inform 2015;6(03):600 –110
+17Nawab K, Ramsey G, Schreiber R. Natural language processing to
+extract meaningful information from patient experience feed-back. Appl Clin Inform 2020;11(02):242 –252
+18Jones BE, South BR, Shao Y, et al. Development and validation of a
+natural language processing tool to identify patients treated forpneumonia across VA emergency departments. Appl Clin Inform2018;9(01):122 –128
+19Dorﬂinger LM, Gilliam WP, Lee AW, Kerns RD. Development and
+application of an electronic health record information extraction
+tool to assess quality of pain management in primary care. TranslBehav Med 2014;4(02):184 –18920Luther SL, Finch DK, Bouayad L, et al. Measuring pain care quality
+in the Veterans Health Administration primary care setting. Pain2022;163(06):e715 –e724
+21Fodeh SJ, Finch D, Bouayad L, et al. Classifying clinical notes with
+pain assessment using machine learning. Med Biol Eng Comput
+2018;56(07):1285 –1292
+22Gaffey AE, Burg MM, Rosman L, et al. Baseline characteristics from
+the Women Veterans Cohort Study: gender differences andsimilarities in health and healthcare utilization. J Womens Health(Larchmt) 2021;30(07):944 –955
+23von Elm E, Altman DG, Egger M, Pocock SJ, Gøtzsche PC, Vanden-
+broucke JPSTROBE Initiative. The Strengthening the Reporting ofObservational Studies in Epidemiology (STROBE) statement:guidelines for reporting observational studies. J Clin Epidemiol2008;61(04):344 –349
+24Roytman GR, Coleman BC, Corcoran KL, Goertz CM, Long CR, Lisi AJ.
+Changes in the use of telehealth and face-to-face chiropracticcare inthe Department of Veterans Affairs before and after the COVID-19
+pandemic. J Manipulative Physiol Ther 2021;44(07):584 –590
+25Fang Q, Nguyen D, Oberski DL. Evaluating the construct validity of
+text embeddings with application to survey questions. EPJ DataSci 2022;11(01):39
+26Hawk C, Whalen W, Farabaugh RJ, et al. Best practices forchiropractic management of patients with chronic musculoskel-etal pain: a clinical practice guideline. J Altern Complement Med2020;26(10):884 –901
+27Ramsey C, Dziura J, Justice AC, et al. Incidence of mental health
+diagnoses in Veterans of Operations Iraqi Freedom, EnduringFreedom, and New Dawn, 2001-2014. Am J Public Health 2017;107(02):329 –335
+28Seal KH, Metzler TJ, Gima KS, Bertenthal D, Maguen S, Marmar CR.
+Trends and risk factors for mental health diagnoses among Iraq and
+Afghanistan Veterans using Department of Veterans Affairs healthcare, 2002-2008. Am J Public Health 2009;99(09):1651 –1658
+29Coleman BC, Corcoran KL, DeRycke EC, et al. Factors associated
+with posttraumatic stress disorder among Veterans of recentwars receiving Veterans affairs chiropractic care. J ManipulativePhysiol Ther 2020;43(08):753 –759
+30Burks K, Shields J, Evans J, Plumley J, Gerlach J, Flesher S. A
+systematic review of outpatient billing practices. SAGE OpenMed 2022;10:20503121221099021
+31King MS, Sharp L, Lipsky MS. Accuracy of CPT evaluation andmanagement coding by family physicians. J Am Board Fam Pract2001;14(03):184 –192
+32Becker WC, Dor ﬂinger L, Edmond SN, Islam L, Heapy AA, Fraenkel
+L. Barriers and facilitators to use of non-pharmacological treat-ments in chronic pain. BMC Fam Pract 2017;18(01):41
+Applied Clinical Informatics Vol. 14 No. 3/2023 © 2023. The Author(s).Extracting Pain Care Quality Indicators from VHA Chiropractic Care Using NLP Coleman et al. 608

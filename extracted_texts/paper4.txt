@@ -1,0 +1,415 @@
+
+--- Page 1 ---
+  Word Embedding and Clustering for Patient -Centered Redesign of 
+Appointment Scheduling in Ambulatory Care Settings  
+Iman Mohammadi, MS, PhD1,5, Saeed Mehrabi, PhD , FAMIA2, Bryce Sutton, PhD3, 
+Huanmei Wu, PhD4,5 
+1Avalere Health, An Inovalon Company, Washington, DC ; 2Secure Exchange Solution, 
+Rock ville, MD ; 3Formerly  Avalere Health, An Inovalon Company, Washington, DC ; 
+4Temple University College of Public Health, Philadelphia, PA ; 5Formerly I ndiana 
+University , Indianapolis, IN  
+Abstract  
+Background. A key to a more efficient scheduling systems is to ensure appointments are designed to meet patient’s 
+needs and to design and simplify appointment scheduling less prone to error. Electronic Health Records (EHR) consist 
+of valuable information about patie nt characteristics and their healthcare needs. The aim of this study is to utilize  
+information from structured and unstructured EHR data to redesign appointment scheduling in community health 
+clinics. Methods . We used Global Vectors for Word Representation, a word embedding approach, on free text field 
+“scheduler note” to cluster patients into groups based on similarities of reasons for appointment. We then redesigned an appointment scheduling template with new types and durations based on the clusters. We compared the current 
+appointment scheduling system and our proposed system by predicting and evaluating clinic performance measures 
+such as patient time spent in- clinic and number of additional patients to accommodate. Results. We collected 17,722 
+encounte rs of an urban community health clinic in 2014 including 102 unique types recorded in the EHR. Following 
+data processing, word embedding implementation, and clustering, appointment types were grouped into 10 clusters. The proposed scheduling template could open space to see overall an additional 716 patients per year and decrease 
+patient in -clinic time by 3.6 minutes on average (p- value<0.0001). Conclusions . We found word embedding, that is 
+an NLP approach, can be used to extract information from schedulers  notes for improving scheduling systems. 
+Unsupervised machine learning approach can be applied to simplify appointment scheduling in CHCs. Patient -
+centered appointment scheduling can be achieved by simplifying and redesigning appointment types and durations 
+that could improve performance measures, such as increasing availability of time and patient satisfaction.  
+Keywords  
+Word Embedding, Clustering, Electronic Health Records, Appointment Scheduling, Healthcare Processes  
+Introduction  
+Appointment scheduling in health care is complex. Dynamic  patient’s medical, physiologic, and mental state can lead 
+to uncertainty in patient flow
+1. In acute health care systems, triaging is applied to evaluate acuity and meet demands . 
+However, in non -acute or outpatient settings,  triage scheduling is not the most effective way of scheduling. Outpatient 
+settings should consider various factors such as: the number of services, the number of providers, the patient arrival 
+process, the number of appointments, service times, and provider punctuality to design their scheduling systems2, 3. 
+Our project goal is to redesign appointment scheduling to meet the needs of patients. In our previous study to improve 
+access to care for underserved populations, we partnered with seven Community Heal th Centers (CHCs) which are 
+ambulatory care settings providing primary and mental care for underserved populations and are designed as safety 
+nets for these populations4, 5. We focused on discovering population needs, barriers to accessing healthcare, and 
+strategies to reduce access barriers. We utilized Electronic Health Records (EHRs) covering a wide range of different 
+information, consisting of both unstructured narrative text as well as structured data. We found redesigning 
+appointment s cheduling is one intervention that could potentially improve access to care. In this paper, we propose a 
+patient- centered appointment template redesign by leveraging EHR data from our partner clinics.  
+Many appointment scheduling methods have been developed to address issues such as demand uncertainty, urgent 
+care, and no -shows aim ing at improving access to care and clinic service quality6. Other  studies aimed at open access 
+scheduling which allows patients to see a provider on the same day of requesting an appointment7. One general 
+conclusion of these studies is that simplifying appointment types is an essential principle in implementing open access scheduling
+8-10. Simpler appointment types can  reduce complexity in scheduling, leading to less error and bette r access 
+to care11. A well redesigned scheduling scheme based on patient characteristics can improve utilization of medical 
+863
+--- Page 2 ---
+  resources12. In these studies, decreasing the number of appointment types or simplifying the appointment types in 
+scheduling systems  was recognized as a key step towards successful implementation. However, in these studies, there 
+are no in -depth discussions on the appropriate ways to simplify appointment types.  
+Through our introductory literature review, we found that previous work in  redesigning appointment scheduling did 
+not propose patient -centered appointment structure  for optimizing scheduling systems. Few studies focused on 
+improving appointment scheduling based on patient characteristics, but these proposed scheduling systems we re 
+designed to accommodate health care settings like emergency departments, radiology departments, and inpatient 
+settings rather than helping community health centers or outpatient settings. In this paper, we utilize real -world 
+encounter data in community health clinics to identify appointment needs of populations they serve. We discuss how 
+to leverage patient’s encounter data including reasons for seeking care to construct patient -centered appointment 
+scheduling. We utilize a natural language processing approach, “word embedding”, to extract significant information 
+from patient records. We use extracted information to cluster patients into groups based on similarity of their reasons 
+for seeking health. The patient clusters are critical input in redesigning appointment types and durations that are simpler and more efficient without adding additional burden on clinics. Clinic managers and other stakeholders are 
+encouraged to use the findings of this study to restructure their health care systems. This approach can also be a 
+roadmap for developing automated appointment scheduling tools for ambulatory care settings.  
+Methods  
+Natural Language Processing (NLP) has been widely used to enable computers to understand free text and use the 
+information derived from free texts
+13. NLP includes wide range of computational techniques used by machines to 
+comprehend human- like language processing14. Word embedding is one of the featured learning techniques in NLP 
+where words, phrases, or sentences are mapped to vectors of numbe rs15. Word embedding can be used to derive 
+semantic relationships between words using deep learning algorithms16. Many studies in areas, such as sentiment 
+analysis, information retrieval, and information extractions have applied word embedding16. The sourc e of free text 
+data in our project is “patient reason for seeking health”. This field is entered by schedulers into the EHR systems. 
+The objective of this study is to utilize word embedding to extract information from reasons for appointments, and 
+then aggregate the similar reasons into single concepts. Those concepts are used to create new appointment types and 
+durations. Figure 1 shows analysis engines used for redesigning appointment scheduling templates.  
+ 
+Figure 1.  Analysis engines used for redesigning appointment scheduling templates . Unstructured data were used in 
+Notes, MedTagger, WORD2VEC, and Validation steps . Structured data were used in Clustering, Validation, and 
+Redesign steps.  
+Data collection and preproces sing (figure 1, steps: Notes, MedTagger) : We collected EHR data from an urban 
+community health clinic which included patient, visit, and provider characteristics. The field, “schedulers’ notes”, was the main data points to extract information. A scheduler note documents a patient’s reason for seeking care at the 
+clinic. For example, when patient calls the clinic and asks for an appointment, the scheduler enters the patient explanation into the EHR system. We used schedulers’ notes to cluster patients based on the similarity of reasons for 
+seeking healthcare. Schedulers’ notes are free text fields with many abbreviations; therefore, any attempt to extract 
+information should include resolving issue of abbreviations. MedTagger, a library developed by Mayo Clini c, contains 
+a suite of programs indexing based on dictionaries
+17. We used the MedTagger18 dictionary list to expand the 
+abbreviations to their full forms, for example “DM” is transformed to “diabetes mellitus”.  
+Text mining  (figure 1, step:  WORD2VEC) : There  are various word embedding models that map words to vector s 
+(word2vec) of real numbers . These methods are generally categorized in to two methods of matrix factorizations and 
+shallow window -based models. Matrix factorization methods capture the statistical  information about the corpus. 
+Approaches, such as latent semantic analysis (LSA)19 capturing the term document frequencies or Hyperspace 
+Analogue to Language (HAL)20 capturing the term -term frequency are two examples of matrix factorization methods. 
+864
+--- Page 3 ---
+  The p roblems with these methods are that the most frequently used words contribute a disproportionate amount to the 
+similarity measure, for instance co -occurrence with words such as “the” or “a” has a large effect on the similarity 
+measure despite a lack of semantic relatedness. The skip -gram and continuous bag- of-words (CBOW) models are two 
+of the most widely used word2vec approaches that use neural network structures in learning word representations27.  
+We used the Global Vectors for Word Representation (Gl oVe)21 method to represent each text column with their real -
+valued vectors. The GloVe model addresses the shortcomings of the earlier models. GloVe captures the benefits of 
+count data while simultaneously capturing the meaningful linear substructures preva lent in modern log- bilinear 
+prediction -based methods. We used the GloVe pre -trained vectors on a 6 billion token corpus from 2014 Wikipedia 
+to construct a 50- dimensional vector for every word in the text that appeared in the pre -trained model . We normalize d 
+vector for words without representation in the pre -trained vector model ; more specifically , we assigned the average of 
+words appeared in the body of our sample  to words without representation. We then averaged all the vectors for the 
+words in the sentence to calculate the final representation of each sentence. For each patient encounter in the EHR, there is a scheduler no te in free text format. We ran the word2vec algorithm on each encounter note . Each encounter 
+was converted to a row with 50 columns representing the 50- dimensional  vector that is derived from the note.  
+Clustering  (figure 1, step: clustering , validation) : The data w ere then fed into an Agglomerative clustering algorithm. 
+Agglomerative clustering is a bottom -up hierarchical clustering approach by merging pair (s) of clusters in which 
+clusters generated in earlier step might be nested within the ones generated  later. This approach does not necessarily 
+neglect the small clusters; hence, it is useful for the discovery of the smaller groups22. To find the optimal number of 
+clusters, we started with 2 clusters and stepwise increased the number of clusters to 20. In  each run, we compared the 
+results of clustering by analyzing the profile within each cluster. Attributes such as age, gender, and provider specialty 
+were used to objectively validate the appropriate number of clusters. We also evaluated the clusters by reading 100 
+notes per cluster to see whether clustered notes are aligned with human judgment. We found the optimal number of 
+clusters is between 10 to 12. We chose 10 as our final number of clusters for this study.  
+Appointment type and duration redesign (figure 1, step: redesign) : In this step, the goal is to  optimally give  new 
+appointment duration to each of the new 10 appointment types , i.e. the 10 clusters. We assumed that the clinic capacity 
+and demand do not change . We investigate d how standalone simplif ication of appointment types and durations could 
+potentially impact performance measures, such as number of patients seen per year and patient satisfaction defined as 
+patient time spent in -clinic. Patient time spent in -clinic is the difference between pati ent arrival and departure times 
+and includes the sum of waiting time to see the provider, time with the provider, and time spent for check- out and 
+payments. Proposed appointment durations were calculated based on the capacity that the clinic must accommoda te 
+daily . The sum of provider hours allocated to see patients per day was defined as daily clinic capacity. For example, 
+if the clinic had two providers on a given day who each allocates 4 hours to see patients, the total capacity of the clinic 
+on that day is 8 hours (i.e. 480 minutes), or 240 minutes per provider.  
+We used the distribution of current appointment durations per cluster to determine the most effective appointment durations for each cluster. For each cluster, we started by assign ing the median  current appointment durations to 
+proposed durations  (figure 2), then we increased it step by step by 1 percentile to the maximum . We then used the 
+capacity and demand of the clinic to calculate performance measures  in each step.  
+Performance measures in the proposed appointment system : Performance measures were:  
+1) Number of patients seen per year . The difference between current durations and proposed durations was calculated 
+as time available to see more patients. We then calculated the number of additional patients tha t can be seen in the 
+proposed system by dividing the time available to see more patients by new appointment durations per cluster. To 
+normalize this measure, we calculated the number of additional patients that the clinic can see in the proposed 
+scheduling system by year . 
+2) Provider time with patient.  It was measured as total appointment duration (minute (s)) per provider.  
+3) Predicted patient time spent in -clinic. The time patients spent in -clinic, which includes in -clinic waiting time plus 
+time spent seeing the provider, was calculated as the difference between arrival time and departure time recorded in the EHR data. We used current appointment durations, arrival time (AM vs PM), gender, provider specialty, number 
+of provider (s) available in the day of appointment, day of week, and patient age as independent variables and in- clinic 
+time as the dependent variable to develop a multivariate linear regression model. We used the regression model to 
+predict time spent in clinic using the proposed appointment durations. Pairwise t -tests were calculated to test for 
+significant differences between current and proposed systems.  
+865
+--- Page 4 ---
+  We fit the current daily demand to the current daily capacity using the proposed types and durations. We found the 
+most effective duration for each cluster by maximizing number of patients per year and provider time with patient while minimizing overall patient time spent in -clinic  (figure 4 ). 
+Results  
+We collected 17,722 encounters of an urban community health clinic in 2014. The dataset included deidentified patient 
+ID, day and time of encounter, patients’ arrival and departure times, age, gender, provider ID and specialty, 
+appointment type (102 unique  types recorded in the EHR), and appointment notes  (or schedulers’ notes). The dataset 
+included 7,061 unique patients in 2014. Following data processing, NLP implementation, and clustering, appointment 
+types were grouped into 10 clusters using patients’ ne eds in the current scheduling systems (shown in table 1).  
+Table 1 and figure 2 were used to determine the most accurate number of clusters. Our proposed scheduling system has 10 types of appointments (noted as clusters). Table 1 shows examples of free texts that were aggregated into one 
+concept. Cluster 1 seems to be appointments that are assigned to patients with complex issues. Cluster 2 represents 
+acute female complications or patients with behavioral health need s. Cluster 3, which is the largest in ter ms of number 
+of reason s, consists of acute care encounters that need to be scheduled as soon as possible. Clusters 6 and 7 are assigned 
+to patients with chronic pain problems and other chronic problems. Clusters 8 and 9 are predominantly for pregnant , 
+reproductive health  and other female complications. Cluster 10 is for wellness and other childcare  patients.  
+Figure 2 illustrates the distribution of current appointment durations per each cluster. Appointment durations typically range from  10 to 60 minutes . Cluster 1 has the highest durations, and this is aligned with the visit reasons shown in 
+table 1, because it is given to complex patients. Cluster 10 has the lowest durations as it is given to well childcare . 
+Table 1.  Cluster profiles and examples of rea sons grouped into clusters.  
+Clusters  Number of 
+appointment 
+types in 
+current 
+scheduling  Average 
+appointment 
+duration in 
+current 
+scheduling 
+(min)  Number of  
+unique  
+reasons for  
+visit Examples  
+1 6 20.0 203 • knot on left breast is more tender and now hot touch not hot today has tried 
+ibuprofen and tylenol f  
+• colpo R/S due to + Trich in pap test and pt did not come in to R/O via urine 
+Needs Urine Testing  
+2 27 17.6 859 • trouble sleeping  
+• hx of BV, pap, hx of, urine concentrated, but not now, burning on urination  
+• Bipolar, Anxiety med f/u,  
+3 37 17.5 4646 • lightheaded, vomiting, intermittent umbilical pain,  
+• cough, congestion, runny nose, tired, decreased appetite  
+4 27 17.6 494 • birth control consult, here with involved mother has tried depo last IM 
+12/2013, reports not happy w  
+• asthma check mother concern speech not clear - history of father having 
+speech problems child  
+5 37 18.1 2619 • fu multiple ED visits for abdominal pain, N&V - MCARE  
+• Postpartum, del 6/19; never had PP visit, wants depo  
+6 30 16.8 2078 • low back pain, pain in legs Has been taking wife's medications for pain  
+• stomach and chest pain (pt wanted to wait until this day for appt)  
+7 34 17.8 1589 • wants to get off work due to side effects of medication/"other problems"  
+• meds/gallstones -upper mid -abd.pain since Sat. -P/S 10 @times needs 
+meds for bipolar  
+8 24 19.9 317 • New OB HX @10:15 nob packet given and instructed on verbal consent 
+for uds and hiv declines mfm refe  
+• ROB 37 wks wants cx checked, increase in contractions and increase in 
+pressure  
+9 31 18.9 728 • pregnancy symptoms, no period x10wks/ neg upt 01/14/14 trying to 
+concieve x 5 years nausea, irritabl  
+• f/u labs/pelvic pain pelvic pain x 2 week c/o clear vaginal discharge +odor - 
+itch 
+10 16 17.1 511 • 9 month wcc cough, cold sx's "twitching" episodes  
+• Well child 12 mos Commercial Insurance Vaccines UTD (CHIRPS 
+Printed)  
+ 
+866
+--- Page 5 ---
+   
+Figure 2.  Distribution of current appointment durations within each cluster.  
+The overall clinic patient gender distribution was 63% to 37% for females and males respectively. Table 2 provides  a 
+breakdown of age and gender profiles for each cluster. Cluster 1 repres ents younger  patients from both genders. Cluster 
+10 shows that 95% of patients are younger than 13 years old, and it represent s a pediatric population. Clusters 8 and 
+9 consist of predominantly female patients. Cluster 3, that was determined to be acute ca re based on table 1, represents 
+all ages and genders. The gender and age profile of each cluster seems to be in agreement with examples of reasons 
+for visits  in table 1 . 
+Table 2.  Distributions of patient age and gender within each cluster.  
+Appointment clus ter Age Gender  
+Mean  SD Min 5th percentile  Median  95th percentile  Max  Female  Male  
+1 17 11 2 2 18 33 33 66.67  33.33  
+2 27 19 0 1 26 61 89 75.1 24.9 
+3 24 21 0 0 18 64 89 65.71  34.29  
+4 22 18 0 0 21 59 96 76.36  23.64  
+5 21 19 0 0 19 59 96 70.77  29.23  
+6 22 20 0 0 16 62 88 66.16  33.84  
+7 22 19 0 0 17 62 90 65.11  34.89  
+8 28 16 0 0 25 61 90 83.81  16.19  
+9 29 19 0 0 27 65 86 80.89  19.11  
+10 3 7 0 0 1 13 76 49.86  50.14  
+Figure 3 shows percentages of appointments within a cluster that were scheduled with various provider specialties. Cluster 2 is a mix of behavioral health and all other specialties. Cluster 3 (acute care) patients were scheduled with all 
+types of specialties. Cluster 10 patients are predominantly scheduled with pediatricians.   
+ 
+Figure 3.  The heatmap presentation of the appointment percentages, scheduled with various specialty within cluster.  
+867
+--- Page 6 ---
+  Figure 4 shows scheduling performance measures per several potential durations for new appointment types. 
+Performance measures are the percentage red uction in average patient in- clinic time, ratio of patients seen in a new 
+practice compared to the current practice, and ratio of provider time spent with patient compared to their capacity. For 
+example, if we consider the value of the 65th percentile of a ll durations within a cluster to the new appointment 
+duration for that cluster, we would see an 11% increase in patient time in the clinic, a 35% increase in number of 
+patients accommodated, and a ~30% decrease in provider time with patients. The results i n figure 4 include iterations 
+from the 65th to 80th percentiles. We did not see changes outside this range, so they are not included in the figure. 
+We chose the 75th percentile duration of appointments within each cluster as the new proposed appointment duration, 
+because it can reduce average patient in -clinic time by 10%, increasing the overall number of patients to be seen by 
+9%, without significantly affecting provider time spent with patient.  
+ 
+Figure 4.  Performance measures by iterations. Nth iteratio n means assigning the Nth percentile of appointment 
+durations within a cluster to the cluster.  
+ 
+Table 3 shows comparisons of the current scheduling system and the proposed scheduling system. Average 
+appointment duration in the current scheduling system is the average of current durations by cluster. Averages  of 
+appointment duration in proposed (i.e. 75th percentile duration of appointments within each cluster ) scheduling system 
+are higher for clusters 1, 2, 4, 7, 8, 9, and 10, and lower for clusters 3, 5, and 6 compared to the average (s) of current 
+durations (p- value<0.0001). The time patients spent in -clinic per visit is calculated based on the EHR patient’s arrival 
+and departure times. Predicted time spent in -clinic was calculated using a linear regression model trained using the 
+current scheduling. Table 3 shows the proposed scheduling system could open space to see overall an additional 716 patients per year, which is about 10 percent more patients. Figure 5 shows distributions of patient time spent in- clinic 
+per visit. Our results suggest that the new scheduling systems and appointment duration could decrease patient in -
+clinic time by 3.6 minutes on average (p- value<0.0001).  
+Table 3.  Comparison of current versus proposed appointment scheduling templates.  
+Appointment 
+cluster  Average appointment 
+duration in current  
+scheduling system 
+(minutes)  Average 
+appointment 
+duration in 
+proposed  scheduling 
+system (minutes)  Average time 
+spent in clinic in 
+current  
+scheduling system 
+(minutes)  Average predicted 
+time spent in clinic 
+in proposed  
+scheduling system 
+(minutes)  Number of 
+additional/less patients 
+clinic can se e in the 
+proposed  scheduling 
+system (patient/year)  
+1 20.0 30 50.8 67.1 -4 
+2 17.6 20 63.0 61.5 -21 
+3 17.5 15 66.0 57.7 649 
+4 17.6 20 64.3 61.0 -58 
+5 18.1 15 68.0 57.4 368 
+6 16.8 15 64.7 57.6 115 
+7 17.8 20 66.9 60.9 -87 
+8 19.9 30 70.3 68.3 -61 
+9 18.9 20 67.5 61.7 -138 
+10 17.1 20 65.4 58.4 -47 
+Total  716 (10%)  
+868
+--- Page 7 ---
+   
+Figure 5.  Comparison of distributions of patient time spent in clinic between the current and proposed appointment 
+types and durations.  
+ 
+Discussions  
+We studied the possibility of using patients’ reasons for seeking health along with patient, visit, and provider 
+characteristics to design new appointment types and durations for community health centers. Our study has three major 
+findings. First, word embedding, that is an NLP approach, can be used to extract information from schedulers notes for improving scheduling systems. Second, unsupervised machine learning approach can be applied to simplify appointment scheduling in CHCs. Third, patient -centered appointment scheduling can be achieved by simplifying and 
+redesigning appointment types and durations that could impr ove performance measures, such as increasing availability 
+of time and patient satisfaction.  
+In this work, we expanded utilization of word embedding trained models by applying it on scheduler notes in primary 
+care settings. We found word embedding trained on EHR scheduler notes  using MedTagger, and GloVe can capture 
+semantics of medical terms, and the results are aligned with human judgment (shown in table 1).  
+The Institute of Medicine defines health care quality as "the degree to which health care services  for individuals and 
+populations increase the likelihood of desired health outcomes and are consistent with current professional 
+knowledge
+23." One of the domains of health care quality is efficiency. Our study found simplification of scheduling 
+based on pa tient, provider, and clinic characteristics could improve efficiency. In this work, we designed a 
+methodology to simplify appointment types and times because complex schedule templates could lead to mismatching 
+patient problems to incorrect solutions24. Simplifying appointment types and times is one of the requirements of 
+transitioning from traditional access models to advanced access models24. The approaches in this study could simplify 
+appointment scheduling to match daily supply and demand. We found simplifying scheduling templates could improve overall clinic performance, such as improving provider productivity, decreasing patient in- clinic waiting time, and 
+improving clinic accommodations. Our methodology is significant because improved overall performa nce could be 
+achieved without additional supply, more resources, or extended hours.  
+Patient- centeredness is another domain of health care quality that is achieved by meeting patient needs and 
+preferences. In this study, we designed an infrastructure for pa tient specific resource allocation. Patients with different 
+reasons for seeking health, age, and gender have different resource requirement
+25. Our proposed appointment 
+scheduling template clusters patients into classes based on reasons for seeking health. Timeliness and patient 
+satisfaction are other aspects of a good health care delivery system26. Our study found that simplified scheduling can 
+reduce in -clinic time that could consequently lead to improved timeliness and satisfaction.  
+Our study has few lim itations. First, our patient encounter data lacked clinical information such as diagnoses, 
+procedures, lab results, and clinicians’ notes. In any future work these features can also be used to design stronger 
+patient specific resource distribution27. Another limitation of this study was that our dataset did not include information 
+about in- clinic patient journeys, such as step by step activities and timestamps from the moment that a patient checks 
+in to departure of patients, and information about daily sta ffing of medical assistants and nurses. Those factors could 
+be predictors of in -clinic waiting time.  Another limitation of the methodology is computationally  resource intensive 
+869
+--- Page 8 ---
+  nature of agglomerative clustering , especially when it comes to large data. Oth er clustering or unsupervised learning 
+methods might be explored.  One limitation of word embedding model such as GloV e is that words must  be seen in 
+the training data in order to have an embedding. There are various methods to deal with out of vocabulary (OOV) 
+words such as subword embedding, <unk> replacement, rand om initialization, etc28.  
+Future work in this area might focus on four  objectives. First, expansion of abbreviations by utilizing more 
+comprehensive dictionaries that would include less commonly used abbreviations. Second, other unsupervised clustering methods such as deep learning or reinforcement learning might be able to extract more relations between 
+notes which would lead to more precise clusters. Third, researchers might use the findings of this study to either  
+implement the algorithms in current EHR interfaces or design a new interface for a decision support system. Future research in this area could also evaluate the effectiveness of the proposed algorithms in real world clinical practice. Forth, EHRs contain a longitudinal data and information on previous patients ’ encounters  that can be considered to 
+augment this redesign approach.  
+Potential Medical Applications.  One of the steps of moving from traditional appointment scheduling to optimized 
+open access sched uling is to simplify appointment types and times. Ambulatory care settings can leverage 
+methodologies and findings of this paper to achieve optimized open access scheduling. Previous studies did not discuss 
+the most appropriate ways to simplify appointment  types. These previous s tudies mainly offered appointment types 
+such as “new”, “established”, “acute”, and “postoperative” as decreased number of appointments10. A key advantage 
+of the methodology presented in this paper is that the simplification of the appointment template not only helps clinics 
+implement advanced open access scheduling system, it is also patient -centered and patient specific. The proposed 
+appointment scheduling templates are designed based on reasons patients are s eeking health care. Another potential 
+medical application of this study is to utilize the unsupervised machine learning approach presented in this paper to design automated appointment scheduling tools for healthcare settings. These tools can be in the for m of online 
+appointment scheduling or automated phone call scheduling. These potential tools ask patients why they need 
+appointments and the system finds the most appropriate appointment type and time for the patient. Methodologies 
+presented in this paper can also be applied on both scheduler and clinician notes to find care needs and gaps for patients and design interventions to close the gaps.  
+Conclusion  
+A key to a more efficient scheduling systems is to ensure appointments are designed to meet patients’ needs, and to 
+design and simplify appointment scheduling which is less prone to error. In this paper, we presented approaches for 
+redesigning appointment scheduling based on patient characteristics, need s, and desires. We used EHR data to 
+investigate the r elationship between patient characteristics and reasons for visit to help providers redesign healthcare 
+systems that can meet the needs of patients. We applied word embedding and unsupervised machine learning methods to design more effective and efficient appointments in ambulatory care settings. We found that simplifying appointment types and times can help healthcare systems achieve improved access and patient satisfaction without 
+adding additional resources.  
+References  
+1. Brandenburg, L., et al., Innovation and best practices in health care scheduling. 2015, Technical report.  
+2. Rajan, B. and A. Seidmann. Improving Open Access Policy for Scheduling Outpatient Appointments. in System Sciences (HICSS), 2016 49th Hawaii International Conference on. 2016. IEEE.  
+3. Cayirli, T., E. Veral, and H. Rosen, Designing appointment scheduling systems for ambulatory care services. 
+Health Care Manag Sci, 2006. 9(1): p. 47- 58.  
+4. Mohammadi, I., et al., Data Analytics and Modeling for Appointment No- show in Community Health Centers.  J 
+Prim Care Community Health, 2018. 9: p. 2150132718811692.  
+5. Mohammadi, I., Simulation and Modeling for Improving Access to Care for Underserved Populations, in BioHealth Informatics. 2018, Indiana University.  
+6. Huang, Y. and S. Verduzco, Appointment templ ate redesign in a women’s health clinic using clinical constraints 
+to improve service quality and efficiency. Applied clinical informatics, 2015. 6(2): p. 271- 287. 
+7. Degani, N., Impact of advanced (open) access scheduling on patients with chronic diseases: a n evidence -based 
+analysis. Ont Health Technol Assess Ser, 2013. 13(7): p. 1- 48.  
+8. Austin, J., et al., Improving access to care at autism treatment centers: a system analysis approach. Pediatrics, 2016. 137(Supplement 2): p. S149- S157.  
+9. Kwong, T., Patient Access: Improving Wait Times in a Specialty Clinic. The Health Care Manager, 2016. 35(1): 
+p. 72 -79. 
+870
+--- Page 9 ---
+  10. Lynn, S., B.J. Edlund, and B.P. Dumas, Open access scheduling: Improving access to rural healthcare. Journal of 
+Nursing Education and Practice, 2016. 6(9): p. p67.  
+11. Murray, M. and C. Tantau, Same- day appointments: exploding the access paradigm. Family practice 
+management, 2000. 7(8): p. 45- 45.  
+12. Huang, Y. -L. and J. Marcak, Radiology scheduling with consideration of patient characteristics to improve pa tient 
+access to care and medical resource utilization. Health Systems, 2013. 2(2): p. 93 -102.  
+13. Chowdhury, G.G., Natural language processing. Annual review of information science and technology, 2003. 37(1): p. 51- 89.  
+14. Liddy, E.D., Natural language processi ng. 2001.  
+15. Liu, F., et al., Learning for biomedical information extraction: Methodological review of recent advances. arXiv preprint arXiv:1606.07993, 2016.  
+16. Wang, Y., et al., A comparison of word embeddings for the biomedical natural language processing. Journal of biomedical informatics, 2018.  
+17. Wang, Y., et al. MayoNLPTeam at TREC 2016 clinical decision support track: an ensemble approach of clinical 
+information extraction and retrieval. in Proceedings of the 2016 Text Retrieval Conference. Gaithersburg, 
+Maryland, USA. 2016.  
+18. Liu, H., et al., An information extraction framework for cohort identification using electronic health records. AMIA Summits on Translational Science Proceedings, 2013. 2013: p. 149.  
+19. Deerwester, S., et al., Indexing by latent semanti c analysis. Journal of the American society for information 
+science, 1990. 41(6): p. 391- 407.  
+20. Lund, K. and C. Burgess, Producing high- dimensional semantic spaces from lexical co -occurrence. Behavior 
+research methods, instruments, & computers, 1996. 28(2):  p. 203- 208.  
+21. Pennington, J., R. Socher, and C. Manning. Glove: Global vectors for word representation. in Proceedings of the 
+2014 conference on empirical methods in natural language processing (EMNLP). 2014.  
+22. Müllner, D., Modern hierarchical, agglomerativ e clustering algorithms. arXiv preprint arXiv:1109.2378, 2011.  
+23. Emanuel, L., et al., What exactly is patient safety? 2008.  
+24. Tantau, C., Accessing patient -centered care using the advanced access model. The Journal of ambulatory care 
+management, 2009. 32(1):  p. 32- 43.  
+25. Gupta, D. and B. Denton, Appointment scheduling in health care: Challenges and opportunities. IIE transactions, 2008. 40(9): p. 800- 819.  
+26. Penchansky, R. and J.W. Thomas, The concept of access: definition and relationship to consumer satisfaction. 
+Medical care, 1981: p. 127 -140.  
+27. Mohammadi, I., et al. Health Care Needs of Underserved Populations in the City of Indianapolis. in Proceedings 
+of the 7th ACM International Conference on Bioinformatics, Computational Biology, and Health Informatics. 
+2016. ACM . 
+28. Luong MT, Manning CD. Achieving open vocabulary neural machine translation with hybrid word- character 
+models. arXiv preprint arXiv:1604.00788. 2016 Apr 4.  
+ 
+ 
+871
