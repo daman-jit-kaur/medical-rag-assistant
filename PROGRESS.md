@@ -69,11 +69,11 @@ medical-rag-assistant/
 - [x] OpenAI API connected to retrieval pipeline
 - [x] Full RAG pipeline working — question → retrieve → GPT → cited answer
 
-### ⬜ Week 3 — LLM + UI
-- [ ] OpenAI API connected to retrieval pipeline
-- [ ] Full pipeline working: question → retrieve → GPT → cited answer
-- [ ] Streamlit app built (input box, answer display, sources section)
-- [ ] App deployed live on Streamlit Cloud (public URL obtained)
+### 🔄 Week 3 — LLM + UI
+- [x] OpenAI API connected to retrieval pipeline
+- [x] Full pipeline working: question → retrieve → GPT → cited answer
+- [x] Streamlit app built (input box, answer display, sources section)
+- [ ] App deployed live on Streamlit Cloud (public URL)
 
 ### ⬜ Week 4 — Evaluation & Submission
 - [ ] RAGAS evaluation running (Faithfulness, Relevance, Context Precision)
@@ -94,6 +94,7 @@ medical-rag-assistant/
 | Mar 9, 2026 | Day 2 complete — 6 PubMed papers downloaded, extract.py written and working, all texts extracted | Day 3 — chunking and embeddings |
 | Mar 14, 2026 | Day 3 complete — embed.py working, 59 chunks embedded with FAISS, query test successful. Switched from ChromaDB to FAISS due to Windows DLL issues | Day 4 — connect OpenAI LLM to pipeline |
 | Mar 14, 2026 | Day 4 complete — rag.py working, full pipeline question → retrieve → GPT → cited answer | Day 5 — build Streamlit UI |
+| Mar 14, 2026 | Day 5 complete — app.py built, Streamlit UI working locally with cited answers and sources section | Day 6 — deploy to Streamlit Cloud |
 
 ## How to Use This File
 At the start of any new Claude chat, paste this file and say:
