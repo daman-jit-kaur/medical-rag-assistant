@@ -61,11 +61,11 @@ medical-rag-assistant/
 - [x] GitHub repo initialized
 - [x] `extract.py` written and tested — extracts text from all PDFs
 
-### ⬜ Week 2 — Embeddings & Vector Store
-- [ ] Text chunked into 500-word segments
-- [ ] SentenceTransformers embeddings generated
-- [ ] Chunks stored in ChromaDB
-- [ ] Query test working (question → relevant chunks returned)
+### 🔄 Week 2 — Embeddings & Vector Store
+- [x] Text chunked into 500-word segments
+- [x] SentenceTransformers embeddings generated
+- [x] FAISS index storing and retrieving chunks (switched from ChromaDB due to Windows DLL issues)
+- [x] Query test working — medical question returns relevant chunks
 
 ### ⬜ Week 3 — LLM + UI
 - [ ] OpenAI API connected to retrieval pipeline
@@ -84,15 +84,13 @@ medical-rag-assistant/
 ---
 
 ## Session Log
-*Update this after every coding session*
 
 | Date | What Was Done | Next Step |
 |---|---|---|
-| — | Project planning complete, roadmap reviewed | Begin Week 1 setup |
 | Mar 9, 2026 | Project planning complete, roadmap reviewed | Begin Week 1 setup |
 | Mar 9, 2026 | Day 1 complete — Python, VS Code, Git, GitHub, venv, libraries, OpenAI API key all set up | Day 2 — download papers |
 | Mar 9, 2026 | Day 2 complete — 6 PubMed papers downloaded, extract.py written and working, all texts extracted | Day 3 — chunking and embeddings |
----
+| Mar 14, 2026 | Day 3 complete — embed.py working, 59 chunks embedded with FAISS, query test successful. Switched from ChromaDB to FAISS due to Windows DLL issues | Day 4 — connect OpenAI LLM to pipeline |
 
 ## How to Use This File
 At the start of any new Claude chat, paste this file and say:
