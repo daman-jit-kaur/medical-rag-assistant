@@ -1,0 +1,45 @@
+{
+  "results": [
+    {
+      "question": "What are the challenges of NLP in clinical notes?",
+      "answer": "The challenges of natural language processing (NLP) in clinical notes include significant semantic and syntactic variation induced by the context of the Electronic Health Record (EHR) system, differences in information recording practices across institutions, variations in language patterns at the specialty sublanguage level, and the heterogeneity of language across EHRs and institutions which hampers the generalizability of language models [Source 1]. Additionally, discrepancies in information recording, productivity, and sharing practices by clinicians, as well as differences in vocabularies of medical specialty sublanguages, can impact the performance of NLP models on various tasks and case studies [Source 1]. Efforts toward standardization and interoperability of clinical NLP systems are ongoing to address these challenges [Source 3].",
+      "faithfulness": 1.0,
+      "answer_relevance": 1.0,
+      "context_precision": 0.5
+    },
+    {
+      "question": "How do EHR systems affect NLP model performance?",
+      "answer": "EHR systems affect NLP model performance by introducing significant heterogeneity in the structure and semantics of clinical notes across different systems, sites, and institutions. This variation hampers the portability of NLP models in extracting information from text for clinical research or practice. Studies have shown that differences in information recording, productivity, and sharing practices by clinicians across EHR systems can impact the performance of NLP models on various tasks and case studies [Source 2]. Additionally, the contextual variation of clinical notes due to EHR migrations can impose significant semantic and syntactic differences, particularly between medical specialties, which can affect the generalizability of clinical language models [Source 2].",
+      "faithfulness": 1.0,
+      "answer_relevance": 1.0,
+      "context_precision": 0.5
+    },
+    {
+      "question": "What methods are used to evaluate clinical NLP systems?",
+      "answer": "The methods used to evaluate clinical NLP systems include measuring semantic and syntactic similarity of clinical notes across different Electronic Health Record (EHR) systems, sites, and institutions [Source 2]. Additionally, studies have leveraged definitions of interoperability to measure variation/similarity between EHRs for specific medical terms [Source 1].",
+      "faithfulness": 0.5,
+      "answer_relevance": 1.0,
+      "context_precision": 0.2
+    },
+    {
+      "question": "What is the impact of EHR migration on clinical documentation?",
+      "answer": "The impact of EHR migration on clinical documentation includes significant semantic and syntactic variation induced by the context of the EHR system and between medical specialties, while only minor variation is caused by the spatial context across sites. This variation hampers the portability of natural language processing (NLP) models in extracting information from clinical notes for research or practice [Source 1].",
+      "faithfulness": 1.0,
+      "answer_relevance": 1.0,
+      "context_precision": 0.8
+    },
+    {
+      "question": "How can NLP models be made more generalizable across institutions?",
+      "answer": "NLP models can be made more generalizable across institutions by accounting for process differences at the specialty sublanguage level and considering the semantic and syntactic variation imposed by the context of the EHR system and between medical specialties. It is important to understand the differences in information recording, productivity, and sharing practices by clinicians across institutions and their respective EHR implementations to standardize language models for clinical natural language processing applications [Source 2]. Additionally, efforts are needed to reconcile the various types of heterogeneity across EHRs and institutions by building clinical NLP systems that are interoperable at syntactic, semantic, and pragmatic levels [Source 1].",
+      "faithfulness": 0.9,
+      "answer_relevance": 1.0,
+      "context_precision": 0.5
+    }
+  ],
+  "summary": {
+    "avg_faithfulness": 0.8800000000000001,
+    "avg_answer_relevance": 1.0,
+    "avg_context_precision": 0.5,
+    "overall_score": 0.7933333333333333
+  }
+}
