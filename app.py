@@ -1,11 +1,12 @@
 import os
 import json
-import faiss
 import numpy as np
 import streamlit as st
 from sentence_transformers import SentenceTransformer
 from openai import OpenAI
 from dotenv import load_dotenv
+import faiss
+from pubmed import get_papers_for_question
 
 # Load API key
 load_dotenv()
@@ -19,37 +20,50 @@ st.set_page_config(
 
 # Title and description
 st.title("🏥 Medical Literature RAG Assistant")
-st.markdown("Ask any medical question and get grounded answers from PubMed research papers.")
+st.markdown("Ask any medical question and get grounded answers from **live PubMed research papers**.")
 st.divider()
 
-# Load models and index (cached so they only load once)
+# Load model (cached so it only loads once)
 @st.cache_resource
-def load_models():
-    model = SentenceTransformer("all-MiniLM-L6-v2")
-    index = faiss.read_index("faiss_db/index.faiss")
-    with open("faiss_db/metadata.json", "r") as f:
-        metadata = json.load(f)
-    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
-    return model, index, metadata, client
+def load_model():
+    return SentenceTransformer("all-MiniLM-L6-v2")
 
-model, index, metadata, client = load_models()
+@st.cache_resource
+def load_client():
+    return OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
-def retrieve_chunks(question, k=3):
-    """Find the top k most relevant chunks for a question."""
+model = load_model()
+client = load_client()
+
+def embed_and_retrieve(question, papers, k=3):
+    """Embed papers and retrieve most relevant chunks."""
+    if not papers:
+        return []
+    
+    # Use abstracts as chunks
+    texts = [p["abstract"] for p in papers]
+    
+    # Embed all abstracts
+    embeddings = model.encode(texts).astype("float32")
+    
+    # Build temporary FAISS index
+    dimension = embeddings.shape[1]
+    index = faiss.IndexFlatL2(dimension)
+    index.add(embeddings)
+    
+    # Embed question and search
     question_embedding = model.encode([question]).astype("float32")
+    k = min(k, len(papers))
     distances, indices = index.search(question_embedding, k=k)
-    results = []
-    for idx in indices[0]:
-        results.append(metadata[idx])
-    return results
+    
+    return [papers[idx] for idx in indices[0]]
 
 def generate_answer(question, chunks):
-    """Send question + retrieved chunks to GPT and get a cited answer."""
+    """Generate cited answer using GPT."""
     context = ""
     for i, chunk in enumerate(chunks):
-        context += f"\n--- Source {i+1}: {chunk['source']} ---\n"
-        context += chunk['text']
-        context += "\n"
+        context += f"\n--- Source {i+1}: {chunk['title']} ---\n"
+        context += chunk['abstract'] + "\n"
 
     prompt = f"""You are a medical research assistant. Answer the question below using ONLY the provided context from PubMed research papers.
 
@@ -75,31 +89,39 @@ Answer:"""
     )
     return response.choices[0].message.content
 
-# Sidebar info
+# Sidebar
 with st.sidebar:
     st.header("📚 About")
     st.markdown("""
-    This app uses **Retrieval-Augmented Generation (RAG)** to answer medical questions from PubMed papers.
+    This app uses **Live RAG** to answer medical questions by searching PubMed in real time.
     
     **How it works:**
-    1. Your question is converted to an embedding
-    2. FAISS finds the most relevant paper chunks
-    3. GPT-3.5 generates a cited answer
+    1. Your question is sent to PubMed API
+    2. Top 10 most relevant papers are retrieved
+    3. Abstracts are embedded with SentenceTransformers
+    4. FAISS finds the most relevant chunks
+    5. GPT-3.5 generates a cited answer
+    
+    **Data Source:**
+    - 📡 Live PubMed Central
+    - 35+ million papers
+    - Always up to date
     
     **Tech Stack:**
     - SentenceTransformers
     - FAISS
     - OpenAI GPT-3.5
+    - PubMed Entrez API
     - Streamlit
     """)
     st.divider()
-    st.markdown(f"📄 **Papers loaded:** 6")
-    st.markdown(f"🔢 **Total chunks:** {index.ntotal}")
+    st.markdown("📡 **Data:** Live PubMed API")
+    st.markdown("📄 **Papers:** 35+ million available")
 
 # Main interface
 question = st.text_input(
     "💬 Ask a medical question:",
-    placeholder="e.g. What are the challenges of NLP in clinical notes?"
+    placeholder="e.g. What are the latest treatments for Type 2 diabetes?"
 )
 
 col1, col2 = st.columns([1, 5])
@@ -112,12 +134,29 @@ if clear_button:
     st.rerun()
 
 if ask_button and question:
-    with st.spinner("Searching papers and generating answer..."):
-        # Retrieve chunks
-        chunks = retrieve_chunks(question, k=3)
+    
+    # Step 1 - Search PubMed
+    with st.status("🔍 Searching PubMed for relevant papers...", expanded=True) as status:
+        st.write("Querying PubMed API...")
+        papers = get_papers_for_question(question, max_results=10)
         
-        # Generate answer
-        answer = generate_answer(question, chunks)
+        if not papers:
+            st.error("No papers found for this question. Try rephrasing.")
+            st.stop()
+        
+        st.write(f"✅ Found {len(papers)} relevant papers")
+        
+        # Step 2 - Retrieve most relevant
+        st.write("Finding most relevant abstracts...")
+        relevant_chunks = embed_and_retrieve(question, papers, k=3)
+        st.write(f"✅ Selected top {len(relevant_chunks)} abstracts")
+        
+        # Step 3 - Generate answer
+        st.write("Generating answer with GPT-3.5...")
+        answer = generate_answer(question, relevant_chunks)
+        st.write("✅ Answer generated!")
+        
+        status.update(label="✅ Done!", state="complete")
     
     # Display answer
     st.subheader("📄 Answer")
@@ -126,9 +165,11 @@ if ask_button and question:
     # Display sources
     st.divider()
     st.subheader("📚 Sources Used")
-    for i, chunk in enumerate(chunks):
-        with st.expander(f"Source {i+1} — {chunk['source']} (chunk {chunk['chunk_index']})"):
-            st.markdown(chunk['text'][:500] + "...")
+    for i, chunk in enumerate(relevant_chunks):
+        with st.expander(f"Source {i+1} — {chunk['title'][:80]}..."):
+            st.markdown(f"**PMID:** {chunk['pmid']}")
+            st.markdown(f"**PubMed Link:** https://pubmed.ncbi.nlm.nih.gov/{chunk['pmid']}/")
+            st.markdown(f"**Abstract:** {chunk['abstract'][:500]}...")
 
 elif ask_button and not question:
     st.warning("Please enter a question first!")
